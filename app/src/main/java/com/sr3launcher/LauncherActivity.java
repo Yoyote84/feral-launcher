@@ -83,8 +83,8 @@ public class LauncherActivity extends Activity {
         TEXT = TR ? 0xFFEAF2F0 : HM ? 0xFFF1F1F3 : GL ? 0xFFEEF3F8 : 0xFFF2EEF8;
         MUTED = TR ? 0xFF8FAAAB : HM ? 0xFF9A9AA4 : GL ? 0xFF8FA1B5 : 0xFF9C93B3;
         AUTO_NOTE = HM
-            ? "Значения взяты из таблицы разработчиков для вашего класса GPU (Feral). Проверьте в игре со счётчиком FPS."
-            : "Стартовые значения по классу GPU. Это не замер: проверьте в игре со счётчиком FPS и поправьте вручную.";
+            ? Fr.t("Значения взяты из таблицы разработчиков для вашего класса GPU (Feral). Проверьте в игре со счётчиком FPS.")
+            : Fr.t("Стартовые значения по классу GPU. Это не замер: проверьте в игре со счётчиком FPS и поправьте вручную.");
         buildEx();
     }
 
@@ -102,32 +102,32 @@ public class LauncherActivity extends Activity {
         }
     }
 
-    private static final String[] L3 = {"Низкие", "Средние", "Высокие"};
+    private static final String[] L3 = {Fr.t("Низкие"), Fr.t("Средние"), Fr.t("Высокие")};
     private static final String[] V3 = {"low", "medium", "high"};
-    private static final String[] L4 = {"Выкл.", "Низкое", "Среднее", "Высокое"};
+    private static final String[] L4 = {Fr.t("Выкл."), Fr.t("Низкое"), Fr.t("Среднее"), Fr.t("Высокое")};
     private static final String[] V4 = {"off", "low", "medium", "high"};
-    private static final String[] LS = {"Минимум", "Низкая", "Средняя", "Высокая"};
+    private static final String[] LS = {Fr.t("Минимум"), Fr.t("Низкая"), Fr.t("Средняя"), Fr.t("Высокая")};
     private static final String[] VS = {"very_low", "low", "medium", "high"};
 
     private final Opt[] opts = new Opt[] {
-        new Opt("GfxShadow", "Качество теней", "string", "Разрешение и дальность теневых карт", L3, V3, 1),
-        new Opt("GfxLighting", "Освещение", "string", "Качество динамического освещения", L3, V3, 2),
-        new Opt("GfxSSAO", "Затенение углов (SSAO)", "string", "Мягкие тени в складках. Чем выше, тем темнее картинка; рекомендуется низкое", L4, V4, 0),
-        new Opt("GfxSSLR", "Отражения в экране (SSLR)", "string", "Отражения на лужах, стекле и машинах", L4, V4, 0),
-        new Opt("GfxVolumetricFog", "Объёмный туман", "string", "Лучи света и дымка", L4, V4, 1),
-        new Opt("GfxAA", "Сглаживание", "string", "TAA чище, но чуть мылит; FXAA резче; выкл. даёт лесенки",
-            new String[] {"Выкл.", "FXAA", "TAA"}, new String[] {"off", "fxaa", "taa"}, 2),
-        new Opt("GfxAnisotropic", "Фильтрация текстур", "string", "Чёткость текстур на дороге и стенах под углом",
+        new Opt("GfxShadow", Fr.t("Качество теней"), "string", Fr.t("Разрешение и дальность теневых карт"), L3, V3, 1),
+        new Opt("GfxLighting", Fr.t("Освещение"), "string", Fr.t("Качество динамического освещения"), L3, V3, 2),
+        new Opt("GfxSSAO", Fr.t("Затенение углов (SSAO)"), "string", Fr.t("Мягкие тени в складках. Чем выше, тем темнее картинка; рекомендуется низкое"), L4, V4, 0),
+        new Opt("GfxSSLR", Fr.t("Отражения в экране (SSLR)"), "string", Fr.t("Отражения на лужах, стекле и машинах"), L4, V4, 0),
+        new Opt("GfxVolumetricFog", Fr.t("Объёмный туман"), "string", Fr.t("Лучи света и дымка"), L4, V4, 1),
+        new Opt("GfxAA", Fr.t("Сглаживание"), "string", Fr.t("TAA чище, но чуть мылит; FXAA резче; выкл. даёт лесенки"),
+            new String[] {Fr.t("Выкл."), "FXAA", "TAA"}, new String[] {"off", "fxaa", "taa"}, 2),
+        new Opt("GfxAnisotropic", Fr.t("Фильтрация текстур"), "string", Fr.t("Чёткость текстур на дороге и стенах под углом"),
             new String[] {"2x", "4x", "8x", "16x"}, new String[] {"2x", "4x", "8x", "16x"}, 2),
-        new Opt("GfxLodMultiplier", "Детализация вдали (LOD)", "double", "Больше значение: модели упрощаются позже",
+        new Opt("GfxLodMultiplier", Fr.t("Детализация вдали (LOD)"), "double", Fr.t("Больше значение: модели упрощаются позже"),
             new String[] {"0.5x", "0.75x", "1x", "1.5x", "2x", "3x"},
             new String[] {"0.500000", "0.750000", "1.000000", "1.500000", "2.000000", "3.000000"}, 2),
-        new Opt("GfxSceneCharacters", "Персонажи на сцене", "string", "Количество и детализация NPC", LS, VS, 2),
-        new Opt("GfxSceneVehicles", "Транспорт на сцене", "string", "Количество и детализация машин", LS, VS, 2),
-        new Opt("GfxSceneMeshes", "Объекты и здания", "string", "Дальность прорисовки мелких объектов", LS, VS, 2),
-        new Opt("GfxSceneTrees", "Деревья", "string", "Дальность и густота деревьев", LS, VS, 2),
-        new Opt("GfxSceneUndergrowth", "Трава и кусты", "string", "Густота растительности", LS, VS, 1),
-        new Opt("GfxSceneVFX", "Эффекты (VFX)", "string", "Дым, огонь, взрывы, частицы", LS, VS, 2),
+        new Opt("GfxSceneCharacters", Fr.t("Персонажи на сцене"), "string", Fr.t("Количество и детализация NPC"), LS, VS, 2),
+        new Opt("GfxSceneVehicles", Fr.t("Транспорт на сцене"), "string", Fr.t("Количество и детализация машин"), LS, VS, 2),
+        new Opt("GfxSceneMeshes", Fr.t("Объекты и здания"), "string", Fr.t("Дальность прорисовки мелких объектов"), LS, VS, 2),
+        new Opt("GfxSceneTrees", Fr.t("Деревья"), "string", Fr.t("Дальность и густота деревьев"), LS, VS, 2),
+        new Opt("GfxSceneUndergrowth", Fr.t("Трава и кусты"), "string", Fr.t("Густота растительности"), LS, VS, 1),
+        new Opt("GfxSceneVFX", Fr.t("Эффекты (VFX)"), "string", Fr.t("Дым, огонь, взрывы, частицы"), LS, VS, 2),
     };
 
     /** Дополнительный параметр из файла настроек, которого нет в меню игры. */
@@ -148,7 +148,7 @@ public class LauncherActivity extends Activity {
         }
     }
 
-    private static final String[] OFFON = {"Выкл.", "Вкл."};
+    private static final String[] OFFON = {Fr.t("Выкл."), Fr.t("Вкл.")};
     private static final String[] V01 = {"0", "1"};
 
     private static Ex mode(Ex e, int m) { e.mode = m; return e; }
@@ -166,94 +166,94 @@ public class LauncherActivity extends Activity {
 
     private void buildEx() {
         exPost = new Ex[] {
-        num("GfxDoF", "Глубина резкости", "Размытие дальнего и ближнего плана (значения low/medium/high не проверены)", GO, false, "string", L4, V4, 0),
-        num("GfxFilmGrain", "Зернистость плёнки", "Шум поверх картинки", GO, false, "string", L4, V4, 0),
-        num("GfxMotionBlur", "Размытие движения", "Смазывание при быстром повороте камеры", GO, false, "string", L4, V4, 0),
+        num("GfxDoF", Fr.t("Глубина резкости"), Fr.t("Размытие дальнего и ближнего плана (значения low/medium/high не проверены)"), GO, false, "string", L4, V4, 0),
+        num("GfxFilmGrain", Fr.t("Зернистость плёнки"), Fr.t("Шум поверх картинки"), GO, false, "string", L4, V4, 0),
+        num("GfxMotionBlur", Fr.t("Размытие движения"), Fr.t("Смазывание при быстром повороте камеры"), GO, false, "string", L4, V4, 0),
         };
         exRange = new Ex[] {
-        num("GfxFadeDistMultiplier", "Дальность прорисовки", "Множитель расстояния, на котором объекты исчезают", SETUP, false, "double",
+        num("GfxFadeDistMultiplier", Fr.t("Дальность прорисовки"), Fr.t("Множитель расстояния, на котором объекты исчезают"), SETUP, false, "double",
             new String[] {"0.5x", "0.75x", "1x", "1.5x", "2x", "3x"},
             new String[] {"0.500000", "0.750000", "1.000000", "1.500000", "2.000000", "3.000000"}, 2),
-        num("GfxCubemapSpecFadeDistSqStart", "Отражения: начало затухания", "Квадрат расстояния, с которого отражения слабеют", GP, true, "double",
+        num("GfxCubemapSpecFadeDistSqStart", Fr.t("Отражения: начало затухания"), Fr.t("Квадрат расстояния, с которого отражения слабеют"), GP, true, "double",
             new String[] {"1000", "3000", "5000", "10000", "20000"},
             new String[] {"1000.000000", "3000.000000", "5000.000000", "10000.000000", "20000.000000"}, 2),
-        num("GfxCubemapSpecFadeDistSqEnd", "Отражения: конец затухания", "Квадрат расстояния, где отражения пропадают совсем", GP, true, "double",
+        num("GfxCubemapSpecFadeDistSqEnd", Fr.t("Отражения: конец затухания"), Fr.t("Квадрат расстояния, где отражения пропадают совсем"), GP, true, "double",
             new String[] {"3000", "5000", "10000", "20000", "40000"},
             new String[] {"3000.000000", "5000.000000", "10000.000000", "20000.000000", "40000.000000"}, 2),
         };
-        exMin = num("MinScaling", "Мин. масштаб разрешения", "Ниже этого DRS не опускает (нужно включённое динамическое разрешение)", DRS, false, "double",
+        exMin = num("MinScaling", Fr.t("Мин. масштаб разрешения"), Fr.t("Ниже этого DRS не опускает (нужно включённое динамическое разрешение)"), DRS, false, "double",
         new String[] {"50%", "60%", "70%", "80%", "90%", "100%"},
         new String[] {"0.500000", "0.600000", "0.700000", "0.800000", "0.900000", "1.000000"}, 1);
-        exMax = num("MaxScaling", "Макс. масштаб разрешения", "Выше этого DRS не поднимается", DRS, false, "double",
+        exMax = num("MaxScaling", Fr.t("Макс. масштаб разрешения"), Fr.t("Выше этого DRS не поднимается"), DRS, false, "double",
         new String[] {"50%", "60%", "70%", "80%", "90%", "100%"},
         new String[] {"0.500000", "0.600000", "0.700000", "0.800000", "0.900000", "1.000000"}, 3);
         exDrs = new Ex[] {
         exMin, exMax,
-        num("FPSTarget", "Цель DRS по FPS", "Под какую частоту DRS подгоняет разрешение", DRS, false, "double",
+        num("FPSTarget", Fr.t("Цель DRS по FPS"), Fr.t("Под какую частоту DRS подгоняет разрешение"), DRS, false, "double",
             new String[] {"30", "40", "60", "90", "120"},
             new String[] {"30.000000", "40.000000", "60.000000", "90.000000", "120.000000"}, 0),
-        num("StepCount", "Шагов масштаба", "Сколько ступеней между минимумом и максимумом", DRS, false, "integer",
+        num("StepCount", Fr.t("Шагов масштаба"), Fr.t("Сколько ступеней между минимумом и максимумом"), DRS, false, "integer",
             new String[] {"3", "5", "8", "10"}, new String[] {"3", "5", "8", "10"}, 1),
-        num("DropDelayFrames", "Задержка снижения (кадров)", "Меньше: DRS реагирует на просадку быстрее", DRS, false, "integer",
+        num("DropDelayFrames", Fr.t("Задержка снижения (кадров)"), Fr.t("Меньше: DRS реагирует на просадку быстрее"), DRS, false, "integer",
             new String[] {"3", "6", "12", "24"}, new String[] {"3", "6", "12", "24"}, 1),
-        num("RaiseDelayFrames", "Задержка повышения (кадров)", "Больше: разрешение возвращается медленнее и скачет реже", DRS, false, "integer",
+        num("RaiseDelayFrames", Fr.t("Задержка повышения (кадров)"), Fr.t("Больше: разрешение возвращается медленнее и скачет реже"), DRS, false, "integer",
             new String[] {"4", "8", "16", "32"}, new String[] {"4", "8", "16", "32"}, 0),
-        onoff("UseGPUTime", "DRS по времени GPU", "Ориентироваться на время кадра GPU, а не CPU", DRS, 1),
-        onoff("SyncWithFramerateManager", "DRS вместе с менеджером кадров", "Согласовывать масштаб с лимитом FPS", DRS, 1),
+        onoff("UseGPUTime", Fr.t("DRS по времени GPU"), Fr.t("Ориентироваться на время кадра GPU, а не CPU"), DRS, 1),
+        onoff("SyncWithFramerateManager", Fr.t("DRS вместе с менеджером кадров"), Fr.t("Согласовывать масштаб с лимитом FPS"), DRS, 1),
         };
         exFrame = new Ex[] {
-        onoff("EnableFramerateManager", "Менеджер частоты кадров", "Игра сама меняет FPS между отзывчивым и простаивающим режимом", D3D_CONFIG, 1),
-        num("GfxResponsiveFps", "FPS в активной игре", "Лимит менеджера при действии", GP, true, "integer",
+        onoff("EnableFramerateManager", Fr.t("Менеджер частоты кадров"), Fr.t("Игра сама меняет FPS между отзывчивым и простаивающим режимом"), D3D_CONFIG, 1),
+        num("GfxResponsiveFps", Fr.t("FPS в активной игре"), Fr.t("Лимит менеджера при действии"), GP, true, "integer",
             new String[] {"30", "40", "60", "90", "120"}, new String[] {"30", "40", "60", "90", "120"}, 0),
-        num("GfxIdleFps", "FPS в простое", "Лимит в меню и когда ничего не происходит", GP, true, "integer",
+        num("GfxIdleFps", Fr.t("FPS в простое"), Fr.t("Лимит в меню и когда ничего не происходит"), GP, true, "integer",
             new String[] {"15", "20", "30", "60"}, new String[] {"15", "20", "30", "60"}, 2),
-        num("FramerateManagerResponsiveFPSDuration", "Время активного режима, мс", "Сколько держится высокий FPS после ввода", D3D_CONFIG, false, "integer",
+        num("FramerateManagerResponsiveFPSDuration", Fr.t("Время активного режима, мс"), Fr.t("Сколько держится высокий FPS после ввода"), D3D_CONFIG, false, "integer",
             new String[] {"1000", "5000", "10000", "30000"}, new String[] {"1000", "5000", "10000", "30000"}, 1),
         };
         exEngine = new Ex[] {
-        onoff("EnableIdxD3D11Threaded", "Многопоточный рендер", "Может поднять FPS, на некоторых GPU вызывает сбои", D3D_CONFIG, 1),
-        num("IdxD3D11ThreadedMaxQueuedFrames", "Очередь кадров", "0: минимум задержки, больше: плавнее, но с задержкой управления", D3D_CONFIG, false, "integer",
+        onoff("EnableIdxD3D11Threaded", Fr.t("Многопоточный рендер"), Fr.t("Может поднять FPS, на некоторых GPU вызывает сбои"), D3D_CONFIG, 1),
+        num("IdxD3D11ThreadedMaxQueuedFrames", Fr.t("Очередь кадров"), Fr.t("0: минимум задержки, больше: плавнее, но с задержкой управления"), D3D_CONFIG, false, "integer",
             new String[] {"0", "1", "2", "3"}, new String[] {"0", "1", "2", "3"}, 0),
-        onoff("VulkanUseSeparateSubmitThread", "Отдельный поток отправки (Vulkan)", "Разгружает главный поток", D3D_CONFIG, 1),
-        onoff("VulkanUseSecondaryCmdBuffersForGraphicsPass", "Вторичные буферы команд (Vulkan)", "Экспериментально, по умолчанию выкл.", D3D_CONFIG, 0),
-        onoff("VulkanRenderToBackbuffer", "Рендер сразу в бэкбуфер", "Экономит проход копирования", D3D_CONFIG, 1),
-        onoff("EnableShaderDeduplicator", "Дедупликация шейдеров", "Меньше шейдеров в кэше", D3D_CONFIG, 1),
-        onoff("EnableF3DWarmer", "Прогрев шейдеров", "Прогревает кэш, меньше подлагов в начале", D3D_CONFIG, 1),
-        onoff("SingleThreadedWarmer", "Прогрев в одном потоке", "Выкл. быстрее прогревает, но грузит все ядра", D3D_CONFIG, 1),
-        onoff("UseFileBackedMemory", "Файловая память игры", "Часть памяти игры берётся из файла на диске. Если игра вылетает в меню с «menu buffer mapping», выключите", join(SETUP, "MemoryFlags"), 0),
+        onoff("VulkanUseSeparateSubmitThread", Fr.t("Отдельный поток отправки (Vulkan)"), Fr.t("Разгружает главный поток"), D3D_CONFIG, 1),
+        onoff("VulkanUseSecondaryCmdBuffersForGraphicsPass", Fr.t("Вторичные буферы команд (Vulkan)"), Fr.t("Экспериментально, по умолчанию выкл."), D3D_CONFIG, 0),
+        onoff("VulkanRenderToBackbuffer", Fr.t("Рендер сразу в бэкбуфер"), Fr.t("Экономит проход копирования"), D3D_CONFIG, 1),
+        onoff("EnableShaderDeduplicator", Fr.t("Дедупликация шейдеров"), Fr.t("Меньше шейдеров в кэше"), D3D_CONFIG, 1),
+        onoff("EnableF3DWarmer", Fr.t("Прогрев шейдеров"), Fr.t("Прогревает кэш, меньше подлагов в начале"), D3D_CONFIG, 1),
+        onoff("SingleThreadedWarmer", Fr.t("Прогрев в одном потоке"), Fr.t("Выкл. быстрее прогревает, но грузит все ядра"), D3D_CONFIG, 1),
+        onoff("UseFileBackedMemory", Fr.t("Файловая память игры"), Fr.t("Часть памяти игры берётся из файла на диске. Если игра вылетает в меню с «menu buffer mapping», выключите"), join(SETUP, "MemoryFlags"), 0),
         };
         exCtl = new Ex[] {
-        onoff("VcpEnableGyroControls", "Гироскоп для прицела", "Прицеливание наклоном телефона", GO, 0),
-        onoff("Enabled", "Прицел по движению (MotionAim)", "Тонкая настройка ниже", MOT, 0),
-        num("SensitivityX", "MotionAim: чувствительность X", "", MOT, false, "double",
+        onoff("VcpEnableGyroControls", Fr.t("Гироскоп для прицела"), Fr.t("Прицеливание наклоном телефона"), GO, 0),
+        onoff("Enabled", Fr.t("Прицел по движению (MotionAim)"), Fr.t("Тонкая настройка ниже"), MOT, 0),
+        num("SensitivityX", Fr.t("MotionAim: чувствительность X"), "", MOT, false, "double",
             new String[] {"100", "200", "400", "600", "800"},
             new String[] {"100.000000", "200.000000", "400.000000", "600.000000", "800.000000"}, 2),
-        num("SensitivityY", "MotionAim: чувствительность Y", "", MOT, false, "double",
+        num("SensitivityY", Fr.t("MotionAim: чувствительность Y"), "", MOT, false, "double",
             new String[] {"100", "200", "400", "600", "800"},
             new String[] {"100.000000", "200.000000", "400.000000", "600.000000", "800.000000"}, 2),
-        num("SmoothFrames", "MotionAim: сглаживание (кадров)", "Больше: плавнее, но с запаздыванием", MOT, false, "integer",
+        num("SmoothFrames", Fr.t("MotionAim: сглаживание (кадров)"), Fr.t("Больше: плавнее, но с запаздыванием"), MOT, false, "integer",
             new String[] {"1", "3", "5", "8"}, new String[] {"1", "3", "5", "8"}, 1),
-        onoff("VcpEnableIntegratedSteering", "Руль наклоном", "Управление машиной наклоном телефона", GO, 0),
-        onoff("VcpAimLockOnlyIfAiming", "Автоприцел только при прицеливании", "", GO, 1),
-        onoff("VcpAimLockOnlyIfMoving", "Автоприцел только в движении", "", GO, 1),
-        onoff("GamepadVehicleSnap", "Привязка руля геймпада к курсу", "Помощь поворота машины на геймпаде", GO, 0),
-        onoff("AirplaneAssist", "Помощь при управлении самолётом", "", GO, 1),
-        onoff("CrouchToggle", "Приседание переключателем", "", GO, 0),
-        onoff("VCPQTEEnableAccessibilityMode", "Упрощённые QTE", "", GO, 0),
-        onoff("MinimapStatic", "Неподвижная миникарта", "Карта не вращается за камерой", GO, 0),
-        onoff("VcpMoveStickLocationIsDynamic", "Плавающий стик движения", "Стик появляется там, где коснулись", GO, 1),
+        onoff("VcpEnableIntegratedSteering", Fr.t("Руль наклоном"), Fr.t("Управление машиной наклоном телефона"), GO, 0),
+        onoff("VcpAimLockOnlyIfAiming", Fr.t("Автоприцел только при прицеливании"), "", GO, 1),
+        onoff("VcpAimLockOnlyIfMoving", Fr.t("Автоприцел только в движении"), "", GO, 1),
+        onoff("GamepadVehicleSnap", Fr.t("Привязка руля геймпада к курсу"), Fr.t("Помощь поворота машины на геймпаде"), GO, 0),
+        onoff("AirplaneAssist", Fr.t("Помощь при управлении самолётом"), "", GO, 1),
+        onoff("CrouchToggle", Fr.t("Приседание переключателем"), "", GO, 0),
+        onoff("VCPQTEEnableAccessibilityMode", Fr.t("Упрощённые QTE"), "", GO, 0),
+        onoff("MinimapStatic", Fr.t("Неподвижная миникарта"), Fr.t("Карта не вращается за камерой"), GO, 0),
+        onoff("VcpMoveStickLocationIsDynamic", Fr.t("Плавающий стик движения"), Fr.t("Стик появляется там, где коснулись"), GO, 1),
         };
         exSys = new Ex[] {
-        onoff("RenderUnderNotch", "Рисовать под вырезом экрана", "", SETUP, 1),
-        onoff("AllowAutorotate", "Автоповорот", "", SETUP, 1),
-        onoff("AllowPausing", "Пауза по кнопке", "", SETUP, 1),
-        onoff("PauseOnSuspend", "Пауза при сворачивании", "", SETUP, 1),
-        onoff("AllowSendCrashReports", "Отправлять отчёты о сбоях", "", SETUP, 0),
-        onoff("AllowSendUsageData", "Отправлять данные об использовании", "", SETUP, 0),
-        onoff("DoShowBatteryOptimisationsWarning", "Предупреждение об оптимизации батареи", "", SETUP, 1),
-        onoff("ShowStartupLogos", "Заставки при запуске", "Выкл.: пропуск логотипов (ключ не проверен)", SETUP, 1),
-        onoff("EnableKillShotCamera", "Камера убийственного выстрела", "Замедленная камера при добивании (ключ не проверен)", SETUP, 1),
-        onoff("EnableCrashCamera", "Камера аварии", "Показ аварии со стороны (ключ не проверен)", SETUP, 1),
+        onoff("RenderUnderNotch", Fr.t("Рисовать под вырезом экрана"), "", SETUP, 1),
+        onoff("AllowAutorotate", Fr.t("Автоповорот"), "", SETUP, 1),
+        onoff("AllowPausing", Fr.t("Пауза по кнопке"), "", SETUP, 1),
+        onoff("PauseOnSuspend", Fr.t("Пауза при сворачивании"), "", SETUP, 1),
+        onoff("AllowSendCrashReports", Fr.t("Отправлять отчёты о сбоях"), "", SETUP, 0),
+        onoff("AllowSendUsageData", Fr.t("Отправлять данные об использовании"), "", SETUP, 0),
+        onoff("DoShowBatteryOptimisationsWarning", Fr.t("Предупреждение об оптимизации батареи"), "", SETUP, 1),
+        onoff("ShowStartupLogos", Fr.t("Заставки при запуске"), Fr.t("Выкл.: пропуск логотипов (ключ не проверен)"), SETUP, 1),
+        onoff("EnableKillShotCamera", Fr.t("Камера убийственного выстрела"), Fr.t("Замедленная камера при добивании (ключ не проверен)"), SETUP, 1),
+        onoff("EnableCrashCamera", Fr.t("Камера аварии"), Fr.t("Показ аварии со стороны (ключ не проверен)"), SETUP, 1),
         };
         exAll = new Ex[][] {exPost, exRange, exDrs, exFrame, exEngine, exCtl, exSys};
     }
@@ -360,7 +360,7 @@ public class LauncherActivity extends Activity {
     }
 
     private void open(Intent i) {
-        try { startActivity(i); } catch (Exception e) { say("Не удалось открыть: " + e.getMessage()); }
+        try { startActivity(i); } catch (Exception e) { say(Fr.t("Не удалось открыть: ") + e.getMessage()); }
     }
 
     private void openSettings(String action) {
@@ -369,7 +369,7 @@ public class LauncherActivity extends Activity {
 
     private void openShizuku() {
         Intent i = getPackageManager().getLaunchIntentForPackage(SHIZUKU_PKG);
-        if (i == null) { say("Shizuku не установлен."); return; }
+        if (i == null) { say(Fr.t("Shizuku не установлен.")); return; }
         open(i);
     }
 
@@ -382,7 +382,7 @@ public class LauncherActivity extends Activity {
         try {
             android.content.ClipboardManager cm = (android.content.ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
             cm.setPrimaryClip(android.content.ClipData.newPlainText("adb", adbGrantCmd()));
-            say("Команда скопирована. Выполните её на компьютере с подключённым телефоном, затем нажмите «Запросить».");
+            say(Fr.t("Команда скопирована. Выполните её на компьютере с подключённым телефоном, затем нажмите «Запросить»."));
         } catch (Exception e) { say(adbGrantCmd()); }
     }
 
@@ -445,38 +445,38 @@ public class LauncherActivity extends Activity {
         if (!perm && !Fs.rootChecking()) showAccessBanner();
 
         boolean viaRoot = Fs.rootOk();
-        setupBody.addView(text("Лаунчеру нужен доступ к папке игры: через Shizuku или через root. Пройдите шаги сверху вниз.", 11, MUTED, false));
+        setupBody.addView(text(Fr.t("Лаунчеру нужен доступ к папке игры: через Shizuku или через root. Пройдите шаги сверху вниз."), 11, MUTED, false));
         LinearLayout.LayoutParams gap = new LinearLayout.LayoutParams(-1, dp(8));
         setupBody.addView(new View(this), gap);
 
         if (viaRoot) {
-            setupRow("Root-доступ получен", null, true, null, null);
+            setupRow(Fr.t("Root-доступ получен"), null, true, null, null);
         } else {
-            setupRow("Есть root? Выдайте его лаунчеру",
-                Fs.rootChecking() ? "Проверяю root…" : "В Magisk/KernelSU/APatch разрешите root для «SR3 Лаунчер» и нажмите «Проверить». Тогда Shizuku не нужен",
-                false, "Проверить", new Act() { public void go() { Fs.retryRoot(); refreshSetup(); } });
-            setupRow("Или Shizuku установлен", "Скачайте приложение Shizuku (Google Play или GitHub)", shInst, "Скачать", new Act() { public void go() { downloadShizuku(); } });
+            setupRow(Fr.t("Есть root? Выдайте его лаунчеру"),
+                Fs.rootChecking() ? Fr.t("Проверяю root…") : Fr.t("В Magisk/KernelSU/APatch разрешите root для «SR3 Лаунчер» и нажмите «Проверить». Тогда Shizuku не нужен"),
+                false, Fr.t("Проверить"), new Act() { public void go() { Fs.retryRoot(); refreshSetup(); } });
+            setupRow(Fr.t("Или Shizuku установлен"), Fr.t("Скачайте приложение Shizuku (Google Play или GitHub)"), shInst, Fr.t("Скачать"), new Act() { public void go() { downloadShizuku(); } });
             if (!running) {
-                setupRow("Режим разработчика включён",
-                    "Настройки → О телефоне → «Номер сборки», нажмите 7 раз", dev, "О телефоне",
+                setupRow(Fr.t("Режим разработчика включён"),
+                    Fr.t("Настройки → О телефоне → «Номер сборки», нажмите 7 раз"), dev, Fr.t("О телефоне"),
                     new Act() { public void go() { openSettings(Settings.ACTION_DEVICE_INFO_SETTINGS); } });
-                setupRow("Отладка включена (беспроводная или по USB)",
-                    "Для разработчиков → «Беспроводная отладка» (нужен Wi‑Fi) или «Отладка по USB»", adb, "Для разработчиков",
+                setupRow(Fr.t("Отладка включена (беспроводная или по USB)"),
+                    Fr.t("Для разработчиков → «Беспроводная отладка» (нужен Wi‑Fi) или «Отладка по USB»"), adb, Fr.t("Для разработчиков"),
                     new Act() { public void go() { openSettings(Settings.ACTION_APPLICATION_DEVELOPMENT_SETTINGS); } });
             }
-            setupRow("Shizuku запущен",
-                "В Shizuku: «Запуск через беспроводную отладку» → «Сопряжение» → «Запустить». После перезагрузки телефона запускать снова",
-                running, "Открыть Shizuku", new Act() { public void go() { openShizuku(); } });
-            setupRow("Доступ лаунчеру выдан",
-                running ? "Нажмите «Разрешить» в окне Shizuku. Если окна нет, включите лаунчер в списке приложений Shizuku" : "Сначала запустите Shizuku",
-                perm, running ? "Запросить" : null, new Act() { public void go() { Fs.requestAccess(); refreshSetup(); } });
-            if (!perm) setupRow("…или выдайте доступ по ADB",
-                "Команда выдаст доступ без окна: " + adbGrantCmd(),
-                false, "Скопировать", new Act() { public void go() { copyAdbCmd(); } });
+            setupRow(Fr.t("Shizuku запущен"),
+                Fr.t("В Shizuku: «Запуск через беспроводную отладку» → «Сопряжение» → «Запустить». После перезагрузки телефона запускать снова"),
+                running, Fr.t("Открыть Shizuku"), new Act() { public void go() { openShizuku(); } });
+            setupRow(Fr.t("Доступ лаунчеру выдан"),
+                running ? Fr.t("Нажмите «Разрешить» в окне Shizuku. Если окна нет, включите лаунчер в списке приложений Shizuku") : Fr.t("Сначала запустите Shizuku"),
+                perm, running ? Fr.t("Запросить") : null, new Act() { public void go() { Fs.requestAccess(); refreshSetup(); } });
+            if (!perm) setupRow(Fr.t("…или выдайте доступ по ADB"),
+                Fr.t("Команда выдаст доступ без окна: ") + adbGrantCmd(),
+                false, Fr.t("Скопировать"), new Act() { public void go() { copyAdbCmd(); } });
         }
-        setupRow("Игра установлена", "Установите " + GAME_NAME, gameInst, null, null);
-        setupRow("Файл настроек игры создан",
-            "Запустите игру один раз до главного меню и закройте её", prefs, gameInst && perm ? "Запустить игру" : null,
+        setupRow(Fr.t("Игра установлена"), Fr.t("Установите ") + GAME_NAME, gameInst, null, null);
+        setupRow(Fr.t("Файл настроек игры создан"),
+            Fr.t("Запустите игру один раз до главного меню и закройте её"), prefs, gameInst && perm ? Fr.t("Запустить игру") : null,
             new Act() { public void go() { launchGameOnce(); } });
     }
 
@@ -520,7 +520,7 @@ public class LauncherActivity extends Activity {
                     boolean full = false;
                     try { full = e.special && Double.parseDouble(cur) >= 0.999; } catch (Exception ignored) { }
                     if (full) idx = e.defIndex;
-                    else { e.vals.add(cur); labels.add("Текущее: " + cur); idx = labels.size() - 1; }
+                    else { e.vals.add(cur); labels.add(Fr.t("Текущее: ") + cur); idx = labels.size() - 1; }
                 }
             }
             fillSpinner(e.spinner, labels, idx);
@@ -677,8 +677,8 @@ public class LauncherActivity extends Activity {
             r.setGravity(Gravity.CENTER_VERTICAL);
             LinearLayout names = new LinearLayout(LauncherActivity.this);
             names.setOrientation(LinearLayout.VERTICAL);
-            names.addView(text("Высота рендера", 15, TEXT, false));
-            names.addView(text("Меньше: больше FPS, но мягче картинка", 11, MUTED, false));
+            names.addView(text(Fr.t("Высота рендера"), 15, TEXT, false));
+            names.addView(text(Fr.t("Меньше: больше FPS, но мягче картинка"), 11, MUTED, false));
             r.addView(names, new LinearLayout.LayoutParams(0, -2, 1f));
             sp = new Spinner(LauncherActivity.this);
             r.addView(sp, new LinearLayout.LayoutParams(dp(250), -2));
@@ -735,27 +735,27 @@ public class LauncherActivity extends Activity {
 
     private void addResolutionCard(LinearLayout left) {
         // --- разрешение
-        LinearLayout cRes = card(left, "Разрешение рендера");
+        LinearLayout cRes = card(left, Fr.t("Разрешение рендера"));
         resHeights = SR3 ? new int[] {nativeH, 1280, 1080, 720, 540} : new int[] {nativeH, 1280, 1080, 900, 800, 720, 540};
         baseRes = resHeights.length;
         resGroup = new ResGroup();
-        String[] names = SR3 ? new String[] {"Нативное", "1280p", "1080p", "720p", "540p"}
-            : new String[] {"Нативное", "1280p", "1080p", "900p", "800p", "720p", "540p"};
+        String[] names = SR3 ? new String[] {Fr.t("Нативное"), "1280p", "1080p", "720p", "540p"}
+            : new String[] {Fr.t("Нативное"), "1280p", "1080p", "900p", "800p", "720p", "540p"};
         for (int i = 0; i < resHeights.length; i++) {
             int w = widthFor(resHeights[i]);
             String label = names[i] + "   " + w + "×" + resHeights[i];
-            if (i == 0) label = "Нативное   " + nativeW + "×" + nativeH;
+            if (i == 0) label = Fr.t("Нативное   ") + nativeW + "×" + nativeH;
             radio(resGroup, label, 100 + i);
         }
         cRes.addView(resGroup);
-        cRes.addView(text("Чем ниже разрешение, тем выше FPS и холоднее телефон. Нативное совпадает с 1280p, если экран 1280 пикселей по высоте.", 11, MUTED, false));
-        swDynRes = toggle(cRes, "Динамическое разрешение", "Игра сама снижает до 60–80% при просадках FPS");
+        cRes.addView(text(Fr.t("Чем ниже разрешение, тем выше FPS и холоднее телефон. Нативное совпадает с 1280p, если экран 1280 пикселей по высоте."), 11, MUTED, false));
+        swDynRes = toggle(cRes, Fr.t("Динамическое разрешение"), Fr.t("Игра сама снижает до 60–80% при просадках FPS"));
 
     }
 
     private void addFpsCard(LinearLayout left) {
         // --- FPS
-        LinearLayout cFps = card(left, "Частота кадров и счётчик");
+        LinearLayout cFps = card(left, Fr.t("Частота кадров и счётчик"));
         List<Integer> rates = new ArrayList<Integer>();
         float maxHz = 60f;
         try {
@@ -771,8 +771,8 @@ public class LauncherActivity extends Activity {
         fpsRow.setGravity(Gravity.CENTER_VERTICAL);
         LinearLayout fn = new LinearLayout(this);
         fn.setOrientation(LinearLayout.VERTICAL);
-        fn.addView(text("Лимит кадров", 15, TEXT, false));
-        fn.addView(text("Выше 60 может греть телефон", 11, MUTED, false));
+        fn.addView(text(Fr.t("Лимит кадров"), 15, TEXT, false));
+        fn.addView(text(Fr.t("Выше 60 может греть телефон"), 11, MUTED, false));
         fpsRow.addView(fn, new LinearLayout.LayoutParams(0, -2, 1f));
         fpsSpinner = new Spinner(this);
         fillSpinner(fpsSpinner, fpsLabels, 2);
@@ -781,46 +781,46 @@ public class LauncherActivity extends Activity {
         LinearLayout.LayoutParams frp = new LinearLayout.LayoutParams(-1, -2);
         frp.bottomMargin = dp(10);
         cFps.addView(fpsRow, frp);
-        cFps.addView(text("Счётчик FPS в игре", 15, TEXT, false));
+        cFps.addView(text(Fr.t("Счётчик FPS в игре"), 15, TEXT, false));
         hudGroup = new RadioGroup(this);
         hudGroup.setOrientation(RadioGroup.HORIZONTAL);
-        radio(hudGroup, "Выключен", 200);
-        radio(hudGroup, "Компактный", 201);
-        radio(hudGroup, "Полный", 202);
+        radio(hudGroup, Fr.t("Выключен"), 200);
+        radio(hudGroup, Fr.t("Компактный"), 201);
+        radio(hudGroup, Fr.t("Полный"), 202);
         cFps.addView(hudGroup);
-        cFps.addView(text("Встроенная статистика движка: FPS, время кадра, нагрузка.", 11, MUTED, false));
+        cFps.addView(text(Fr.t("Встроенная статистика движка: FPS, время кадра, нагрузка."), 11, MUTED, false));
 
     }
 
     private void addUpscalerCard(LinearLayout left) {
         // --- апскейлер движка
-        LinearLayout cUp = card(left, "Апскейлер игры");
+        LinearLayout cUp = card(left, Fr.t("Апскейлер игры"));
         LinearLayout upRow = new LinearLayout(this);
         upRow.setOrientation(LinearLayout.HORIZONTAL);
         upRow.setGravity(Gravity.CENTER_VERTICAL);
         LinearLayout un = new LinearLayout(this);
         un.setOrientation(LinearLayout.VERTICAL);
-        un.addView(text("Метод", 15, TEXT, false));
-        un.addView(text("Как игра растягивает картинку на экран при пониженном разрешении", 11, MUTED, false));
+        un.addView(text(Fr.t("Метод"), 15, TEXT, false));
+        un.addView(text(Fr.t("Как игра растягивает картинку на экран при пониженном разрешении"), 11, MUTED, false));
         upRow.addView(un, new LinearLayout.LayoutParams(0, -2, 1f));
         upTech = new Spinner(this);
         List<String> tl = new ArrayList<String>();
-        tl.add("0 (по умолчанию)"); tl.add("1"); tl.add("2"); tl.add("3"); tl.add("4");
+        tl.add(Fr.t("0 (по умолчанию)")); tl.add("1"); tl.add("2"); tl.add("3"); tl.add("4");
         fillSpinner(upTech, tl, 0);
         upRow.addView(upTech, new LinearLayout.LayoutParams(dp(150), -2));
         cUp.addView(upRow);
-        cUp.addView(text("В движке есть билинейный, CAS и EASU/RCAS (как FSR 1). Какой номер какой метод, надёжно определить нельзя: сравните картинку на 540p по глазам.", 11, MUTED, false));
-        upSharpLabel = text("Резкость апскейлера: 50%", 15, TEXT, false);
+        cUp.addView(text(Fr.t("В движке есть билинейный, CAS и EASU/RCAS (как FSR 1). Какой номер какой метод, надёжно определить нельзя: сравните картинку на 540p по глазам."), 11, MUTED, false));
+        upSharpLabel = text(Fr.t("Резкость апскейлера: 50%"), 15, TEXT, false);
         cUp.addView(upSharpLabel);
         upSharpSeek = new SeekBar(this);
         upSharpSeek.setMax(100);
         upSharpSeek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override public void onProgressChanged(SeekBar s2, int p, boolean u) { upSharpLabel.setText("Резкость апскейлера: " + p + "%"); }
+            @Override public void onProgressChanged(SeekBar s2, int p, boolean u) { upSharpLabel.setText(Fr.t("Резкость апскейлера: ") + p + "%"); }
             @Override public void onStartTrackingTouch(SeekBar s2) { }
             @Override public void onStopTrackingTouch(SeekBar s2) { }
         });
         cUp.addView(upSharpSeek);
-        swCasPs = toggle(cUp, "CAS через пиксельный шейдер", "Альтернативный режим резкости, может быть быстрее или медленнее");
+        swCasPs = toggle(cUp, Fr.t("CAS через пиксельный шейдер"), Fr.t("Альтернативный режим резкости, может быть быстрее или медленнее"));
 
     }
 
@@ -845,19 +845,19 @@ public class LauncherActivity extends Activity {
         LinearLayout titles = new LinearLayout(this);
         titles.setOrientation(LinearLayout.VERTICAL);
         titles.addView(text(GAME_TITLE, 22, Color.WHITE, true));
-        titles.addView(text("Лаунчер: разрешение, графика, счётчик FPS и скрытые параметры игры", 13, MUTED, false));
+        titles.addView(text(Fr.t("Лаунчер: разрешение, графика, счётчик FPS и скрытые параметры игры"), 13, MUTED, false));
         head.addView(titles, new LinearLayout.LayoutParams(0, -2, 1f));
         LinearLayout credit = new LinearLayout(this);
         credit.setOrientation(LinearLayout.VERTICAL);
         credit.setGravity(Gravity.END);
-        credit.addView(text("Автор: Tsifrokayf", 13, TEXT, false));
+        credit.addView(text(Fr.t("Автор: Tsifrokayf"), 13, TEXT, false));
         TextView gh = text("github.com/Tsifrokayf", 13, ACCENT, true);
         gh.setPaintFlags(gh.getPaintFlags() | android.graphics.Paint.UNDERLINE_TEXT_FLAG);
         gh.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 try {
                     startActivity(new Intent(Intent.ACTION_VIEW, android.net.Uri.parse("https://github.com/Tsifrokayf")));
-                } catch (Exception e) { say("Не удалось открыть ссылку"); }
+                } catch (Exception e) { say(Fr.t("Не удалось открыть ссылку")); }
             }
         });
         credit.addView(gh);
@@ -886,7 +886,7 @@ public class LauncherActivity extends Activity {
         root.addView(scroll, new LinearLayout.LayoutParams(-1, 0, 1f));
 
         // --- первичная настройка: проверка Shizuku, отладки и игры
-        setupCard = card(left, "Первичная настройка");
+        setupCard = card(left, Fr.t("Первичная настройка"));
         setupBody = new LinearLayout(this);
         setupBody.setOrientation(LinearLayout.VERTICAL);
         setupCard.addView(setupBody);
@@ -894,13 +894,13 @@ public class LauncherActivity extends Activity {
         if (SR3) {
         // --- авто-подбор по железу
         hw = Hw.detect(this);
-        LinearLayout cAuto = card(left, "Подбор под ваше железо");
+        LinearLayout cAuto = card(left, Fr.t("Подбор под ваше железо"));
         hwText = text(hw.describe(), 12, MUTED, false);
         cAuto.addView(hwText);
         LinearLayout autoRow = new LinearLayout(this);
         autoRow.setOrientation(LinearLayout.HORIZONTAL);
-        Button a60 = button("Авто · 60 FPS", false);
-        Button a30 = button("Авто · 30 FPS", false);
+        Button a60 = button(Fr.t("Авто · 60 FPS"), false);
+        Button a30 = button(Fr.t("Авто · 30 FPS"), false);
         LinearLayout.LayoutParams ap = new LinearLayout.LayoutParams(0, -2, 1f);
         ap.topMargin = dp(8);
         ap.rightMargin = dp(6);
@@ -909,8 +909,8 @@ public class LauncherActivity extends Activity {
         ap2.topMargin = dp(8);
         autoRow.addView(a30, ap2);
         cAuto.addView(autoRow);
-        cAuto.addView(text("Стартовые значения по классу GPU. Это не замер: после подбора проверьте в игре со счётчиком FPS и поправьте вручную.", 11, MUTED, false));
-        cAuto.addView(text("Пресеты графики (FPS-лимит не меняют):", 12, TEXT, false));
+        cAuto.addView(text(Fr.t("Стартовые значения по классу GPU. Это не замер: после подбора проверьте в игре со счётчиком FPS и поправьте вручную."), 11, MUTED, false));
+        cAuto.addView(text(Fr.t("Пресеты графики (FPS-лимит не меняют):"), 12, TEXT, false));
         LinearLayout presetRow = new LinearLayout(this);
         presetRow.setOrientation(LinearLayout.HORIZONTAL);
         for (int i = 0; i < PRESET_NAMES.length; i++) {
@@ -935,34 +935,34 @@ public class LauncherActivity extends Activity {
         addUpscalerCard(left);
 
         // --- графика
-        LinearLayout cGfx = card(right, "Графика");
+        LinearLayout cGfx = card(right, Fr.t("Графика"));
         for (Opt o : opts) addOptRow(cGfx, o);
 
-        LinearLayout cMore = card(right, "Резкость и текстуры");
-        sharpLabel = text("Резкость (CAS): 5%", 15, TEXT, false);
+        LinearLayout cMore = card(right, Fr.t("Резкость и текстуры"));
+        sharpLabel = text(Fr.t("Резкость (CAS): 5%"), 15, TEXT, false);
         cMore.addView(sharpLabel);
         sharpSeek = new SeekBar(this);
         sharpSeek.setMax(100);
         sharpSeek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override public void onProgressChanged(SeekBar s, int p, boolean u) { sharpLabel.setText("Резкость (CAS): " + p + "%"); }
+            @Override public void onProgressChanged(SeekBar s, int p, boolean u) { sharpLabel.setText(Fr.t("Резкость (CAS): ") + p + "%"); }
             @Override public void onStartTrackingTouch(SeekBar s) { }
             @Override public void onStopTrackingTouch(SeekBar s) { }
         });
         LinearLayout.LayoutParams sp = new LinearLayout.LayoutParams(-1, -2);
         sp.bottomMargin = dp(10);
         cMore.addView(sharpSeek, sp);
-        swCube = toggle(cMore, "Кубические отражения", "Отражения окружения на металле и стекле");
-        swHiRes = toggle(cMore, "Текстуры персонажей высокого разрешения", "Чёткие лица и одежда, больше видеопамяти");
+        swCube = toggle(cMore, Fr.t("Кубические отражения"), Fr.t("Отражения окружения на металле и стекле"));
+        swHiRes = toggle(cMore, Fr.t("Текстуры персонажей высокого разрешения"), Fr.t("Чёткие лица и одежда, больше видеопамяти"));
 
         // --- дополнительные параметры (скрытые в игре)
         exMin.special = true; exMax.special = true;
-        addExCard(left, "Пост-обработка", exPost);
-        addExCard(left, "Дальность прорисовки и отражения", exRange);
-        addExCard(left, "Динамическое разрешение: тонко", exDrs);
-        addExCard(right, "Менеджер кадров", exFrame);
-        addExCard(right, "Движок и потоки (риск сбоев)", exEngine);
-        addExCard(right, "Управление", exCtl);
-        addExCard(right, "Система", exSys);
+        addExCard(left, Fr.t("Пост-обработка"), exPost);
+        addExCard(left, Fr.t("Дальность прорисовки и отражения"), exRange);
+        addExCard(left, Fr.t("Динамическое разрешение: тонко"), exDrs);
+        addExCard(right, Fr.t("Менеджер кадров"), exFrame);
+        addExCard(right, Fr.t("Движок и потоки (риск сбоев)"), exEngine);
+        addExCard(right, Fr.t("Управление"), exCtl);
+        addExCard(right, Fr.t("Система"), exSys);
 
         } else {
             buildOtherBody(left, right);
@@ -977,9 +977,9 @@ public class LauncherActivity extends Activity {
         bar.setPadding(dp(24), dp(10), dp(24), dp(12));
         status = text("", 12, MUTED, false);
         bar.addView(status, new LinearLayout.LayoutParams(0, -2, 1f));
-        Button reset = button("Вернуть исходные", false);
-        Button save = button("Сохранить", false);
-        Button play = button("▶  ИГРАТЬ", true);
+        Button reset = button(Fr.t("Вернуть исходные"), false);
+        Button save = button(Fr.t("Сохранить"), false);
+        Button play = button(Fr.t("▶  ИГРАТЬ"), true);
         LinearLayout.LayoutParams bp = new LinearLayout.LayoutParams(-2, -2);
         bp.leftMargin = dp(10);
         bar.addView(reset, bp);
@@ -988,7 +988,7 @@ public class LauncherActivity extends Activity {
         root.addView(bar, new LinearLayout.LayoutParams(-1, -2));
 
         reset.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View v) { restoreBackup(); } });
-        save.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View v) { if (applyToFile()) say("Настройки сохранены"); } });
+        save.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View v) { if (applyToFile()) say(Fr.t("Настройки сохранены")); } });
         play.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View v) { play(); } });
 
         setContentView(root);
@@ -1003,10 +1003,10 @@ public class LauncherActivity extends Activity {
     private boolean updBusy;
 
     private void buildUpdateCard(LinearLayout parent) {
-        LinearLayout c = card(parent, "Обновления");
-        updInfo = text("Установлена версия " + BuildConfig.VERSION_NAME + ". Новые версии берутся из GitHub Releases.", 12, MUTED, false);
+        LinearLayout c = card(parent, Fr.t("Обновления"));
+        updInfo = text(Fr.t("Установлена версия ") + BuildConfig.VERSION_NAME + Fr.t(". Новые версии берутся из GitHub Releases."), 12, MUTED, false);
         c.addView(updInfo);
-        updBtn = button("Проверить обновления", false);
+        updBtn = button(Fr.t("Проверить обновления"), false);
         LinearLayout.LayoutParams bp = new LinearLayout.LayoutParams(-2, -2);
         bp.topMargin = dp(8);
         c.addView(updBtn, bp);
@@ -1023,7 +1023,7 @@ public class LauncherActivity extends Activity {
                 else checkUpdate(false);
             }
         });
-        TextView link = text("Страница релизов на GitHub", 12, ACCENT, false);
+        TextView link = text(Fr.t("Страница релизов на GitHub"), 12, ACCENT, false);
         link.setPadding(0, dp(8), 0, 0);
         link.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
@@ -1037,7 +1037,7 @@ public class LauncherActivity extends Activity {
     private void checkUpdate(final boolean silent) {
         if (updBusy || updInfo == null) return;
         updBusy = true;
-        if (!silent) updInfo.setText("Проверяю…");
+        if (!silent) updInfo.setText(Fr.t("Проверяю…"));
         new Thread(new Runnable() {
             @Override public void run() {
                 Updater.Release r = null;
@@ -1049,19 +1049,19 @@ public class LauncherActivity extends Activity {
                     @Override public void run() {
                         updBusy = false;
                         if (rel == null) {
-                            if (!silent) updInfo.setText("Не удалось проверить: " + error);
+                            if (!silent) updInfo.setText(Fr.t("Не удалось проверить: ") + error);
                             return;
                         }
                         updRel = rel;
                         if (Updater.newer(rel.tag, BuildConfig.VERSION_NAME)) {
                             String n = rel.notes.trim();
                             if (n.length() > 300) n = n.substring(0, 300) + "…";
-                            updInfo.setText("Доступна версия " + rel.tag + " (у вас " + BuildConfig.VERSION_NAME + ")." + (n.length() > 0 ? "\n" + n : "")
-                                + (rel.apkUrl.length() == 0 ? "\nВ релизе нет APK, откройте страницу релизов." : ""));
-                            if (rel.apkUrl.length() > 0) updBtn.setText("Скачать и установить " + rel.tag);
-                            say("Доступно обновление лаунчера: " + rel.tag);
+                            updInfo.setText(Fr.t("Доступна версия ") + rel.tag + Fr.t(" (у вас ") + BuildConfig.VERSION_NAME + ")." + (n.length() > 0 ? "\n" + n : "")
+                                + (rel.apkUrl.length() == 0 ? Fr.t("\nВ релизе нет APK, откройте страницу релизов.") : ""));
+                            if (rel.apkUrl.length() > 0) updBtn.setText(Fr.t("Скачать и установить ") + rel.tag);
+                            say(Fr.t("Доступно обновление лаунчера: ") + rel.tag);
                         } else if (!silent) {
-                            updInfo.setText("У вас последняя версия (" + BuildConfig.VERSION_NAME + "). На GitHub: " + rel.tag + ".");
+                            updInfo.setText(Fr.t("У вас последняя версия (") + BuildConfig.VERSION_NAME + Fr.t("). На GitHub: ") + rel.tag + ".");
                         }
                     }
                 });
@@ -1073,7 +1073,7 @@ public class LauncherActivity extends Activity {
         if (updBusy || updRel == null) return;
         updBusy = true;
         updBtn.setEnabled(false);
-        updInfo.setText("Скачиваю " + updRel.tag + "…");
+        updInfo.setText(Fr.t("Скачиваю ") + updRel.tag + "…");
         updProg.setProgress(0);
         updProg.setVisibility(View.VISIBLE);
         final String url = updRel.apkUrl;
@@ -1083,7 +1083,7 @@ public class LauncherActivity extends Activity {
                 try {
                     Updater.download(url, ApkProvider.apk(LauncherActivity.this).getParentFile(), new Updater.Progress() {
                         @Override public void onProgress(final int pct) {
-                            handler.post(new Runnable() { @Override public void run() { updInfo.setText("Скачиваю… " + pct + "%"); updProg.setProgress(pct); } });
+                            handler.post(new Runnable() { @Override public void run() { updInfo.setText(Fr.t("Скачиваю… ") + pct + "%"); updProg.setProgress(pct); } });
                         }
                     });
                 } catch (Exception e) { err = e.getMessage() == null ? e.toString() : e.getMessage(); }
@@ -1093,7 +1093,7 @@ public class LauncherActivity extends Activity {
                         updBusy = false;
                         updBtn.setEnabled(true);
                         updProg.setVisibility(View.GONE);
-                        if (error != null) { updInfo.setText("Не удалось скачать: " + error); return; }
+                        if (error != null) { updInfo.setText(Fr.t("Не удалось скачать: ") + error); return; }
                         installUpdate();
                     }
                 });
@@ -1103,7 +1103,7 @@ public class LauncherActivity extends Activity {
 
     private void installUpdate() {
         if (!getPackageManager().canRequestPackageInstalls()) {
-            updInfo.setText("Разрешите этому приложению установку обновлений в открывшемся окне и снова нажмите кнопку.");
+            updInfo.setText(Fr.t("Разрешите этому приложению установку обновлений в открывшемся окне и снова нажмите кнопку."));
             try {
                 startActivity(new Intent(android.provider.Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES, android.net.Uri.parse("package:" + getPackageName())));
             } catch (Exception ignored) { }
@@ -1114,9 +1114,9 @@ public class LauncherActivity extends Activity {
             i.setDataAndType(ApkProvider.uri(this), "application/vnd.android.package-archive");
             i.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(i);
-            updInfo.setText("Файл скачан, подтвердите установку в окне системы.");
+            updInfo.setText(Fr.t("Файл скачан, подтвердите установку в окне системы."));
         } catch (Exception e) {
-            updInfo.setText("Не удалось открыть установщик: " + e.getMessage());
+            updInfo.setText(Fr.t("Не удалось открыть установщик: ") + e.getMessage());
         }
     }
 
@@ -1127,9 +1127,9 @@ public class LauncherActivity extends Activity {
     private Perf.Info perfI;
     private boolean perfLoading;
     private List<String[]> perfCoreOpts = new ArrayList<String[]>();
-    private static final String[] ZRAM_LABELS = {"Не менять", "2 ГБ", "3 ГБ", "4 ГБ", "6 ГБ", "8 ГБ"};
+    private static final String[] ZRAM_LABELS = {Fr.t("Не менять"), Fr.t("2 ГБ"), Fr.t("3 ГБ"), Fr.t("4 ГБ"), Fr.t("6 ГБ"), Fr.t("8 ГБ")};
     private static final long[] ZRAM_GB = {0, 2, 3, 4, 6, 8};
-    private static final String[] SWP_LABELS = {"Не менять", "20", "60", "100", "150", "190"};
+    private static final String[] SWP_LABELS = {Fr.t("Не менять"), "20", "60", "100", "150", "190"};
     private static final int[] SWP_VAL = {-1, 20, 60, 100, 150, 190};
 
     private void perfRow(LinearLayout c, String title, String hint, Spinner sp) {
@@ -1148,34 +1148,34 @@ public class LauncherActivity extends Activity {
     }
 
     private void buildPerfCard(LinearLayout parent) {
-        LinearLayout c = card(parent, "Производительность (нужен root)");
-        perfInfo = text("Нужен root: выдайте его лаунчеру в карточке «Первичная настройка».", 12, MUTED, false);
+        LinearLayout c = card(parent, Fr.t("Производительность (нужен root)"));
+        perfInfo = text(Fr.t("Нужен root: выдайте его лаунчеру в карточке «Первичная настройка»."), 12, MUTED, false);
         c.addView(perfInfo);
         perfReport = text("", 11, MUTED, false);
         c.addView(perfReport);
         perfCore = new Spinner(this); perfPrio = new Spinner(this); perfZram = new Spinner(this); perfSwp = new Spinner(this);
         List<String> l0 = new ArrayList<String>();
-        l0.add("Все ядра (не менять)");
+        l0.add(Fr.t("Все ядра (не менять)"));
         fillSpinner(perfCore, l0, 0);
-        perfRow(c, "Ядра для игры", "Привязка потоков игры к ядрам. Применяется при запуске", perfCore);
+        perfRow(c, Fr.t("Ядра для игры"), Fr.t("Привязка потоков игры к ядрам. Применяется при запуске"), perfCore);
         List<String> pr = new ArrayList<String>();
         for (String x : Perf.PRIO_LABELS) pr.add(x);
         fillSpinner(perfPrio, pr, launcherPrefs.getInt("perf_prio", 0));
-        perfRow(c, "Приоритет игры", "Планировщику важнее потоки игры. Применяется при запуске", perfPrio);
+        perfRow(c, Fr.t("Приоритет игры"), Fr.t("Планировщику важнее потоки игры. Применяется при запуске"), perfPrio);
         List<String> zl = new ArrayList<String>();
         for (String x : ZRAM_LABELS) zl.add(x);
         fillSpinner(perfZram, zl, 0);
-        perfRow(c, "Размер подкачки (zram)", "Сжатая подкачка в ОЗУ. Действует до перезагрузки", perfZram);
+        perfRow(c, Fr.t("Размер подкачки (zram)"), Fr.t("Сжатая подкачка в ОЗУ. Действует до перезагрузки"), perfZram);
         List<String> sl = new ArrayList<String>();
         for (String x : SWP_LABELS) sl.add(x);
         fillSpinner(perfSwp, sl, 0);
-        perfRow(c, "Склонность к подкачке (swappiness)", "Больше: система охотнее выгружает память в подкачку", perfSwp);
+        perfRow(c, Fr.t("Склонность к подкачке (swappiness)"), Fr.t("Больше: система охотнее выгружает память в подкачку"), perfSwp);
 
         LinearLayout btns = new LinearLayout(this);
         btns.setOrientation(LinearLayout.HORIZONTAL);
-        Button apply = button("Применить подкачку", false);
-        Button undo = button("Вернуть подкачку", false);
-        Button now = button("Ядра и приоритет — к запущенной игре", false);
+        Button apply = button(Fr.t("Применить подкачку"), false);
+        Button undo = button(Fr.t("Вернуть подкачку"), false);
+        Button now = button(Fr.t("Ядра и приоритет — к запущенной игре"), false);
         LinearLayout.LayoutParams bp = new LinearLayout.LayoutParams(0, -2, 1f);
         bp.rightMargin = dp(6);
         btns.addView(apply, bp);
@@ -1184,7 +1184,7 @@ public class LauncherActivity extends Activity {
         tp.topMargin = dp(10);
         c.addView(btns, tp);
         c.addView(now, tp);
-        c.addView(text("Настройки ядер и приоритета запоминаются и применяются при каждом запуске игры из лаунчера. Подкачка меняется сразу, после перезагрузки телефона возвращается как была.", 11, MUTED, false));
+        c.addView(text(Fr.t("Настройки ядер и приоритета запоминаются и применяются при каждом запуске игры из лаунчера. Подкачка меняется сразу, после перезагрузки телефона возвращается как была."), 11, MUTED, false));
 
         apply.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View v) { perfApplySwap(false); } });
         undo.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View v) { perfApplySwap(true); } });
@@ -1200,7 +1200,7 @@ public class LauncherActivity extends Activity {
                 final String r = Fs.suOut("cat /data/local/tmp/sr3l_perf.txt 2>/dev/null");
                 handler.post(new Runnable() {
                     @Override public void run() {
-                        if (r != null && r.trim().length() > 0) perfReport.setText("Последний запуск: " + r.trim());
+                        if (r != null && r.trim().length() > 0) perfReport.setText(Fr.t("Последний запуск: ") + r.trim());
                     }
                 });
             }
@@ -1217,7 +1217,7 @@ public class LauncherActivity extends Activity {
                 handler.post(new Runnable() {
                     @Override public void run() {
                         perfLoading = false;
-                        if (!in.ok) { perfInfo.setText("Не удалось прочитать данные системы через root."); return; }
+                        if (!in.ok) { perfInfo.setText(Fr.t("Не удалось прочитать данные системы через root.")); return; }
                         perfI = in;
                         perfInfo.setText(in.describe());
                         perfCoreOpts = Perf.coreOptions(in);
@@ -1255,36 +1255,36 @@ public class LauncherActivity extends Activity {
     }
 
     private void perfApplyNow() {
-        if (!Fs.rootOk()) { say("Нужен root"); return; }
-        if (perfI == null) { say("Данные о ядрах ещё не прочитаны"); return; }
+        if (!Fs.rootOk()) { say(Fr.t("Нужен root")); return; }
+        if (perfI == null) { say(Fr.t("Данные о ядрах ещё не прочитаны")); return; }
         perfSavePrefs();
         final String mask = Perf.mask(perfI, perfCoreKey());
         final int nice = Perf.PRIO_NICE[Math.max(0, Math.min(Perf.PRIO_NICE.length - 1, perfPrio.getSelectedItemPosition()))];
-        if (mask == null && nice == 0) { say("Выберите ядра или приоритет, отличные от значений по умолчанию"); return; }
-        say("Применяю к запущенной игре…");
+        if (mask == null && nice == 0) { say(Fr.t("Выберите ядра или приоритет, отличные от значений по умолчанию")); return; }
+        say(Fr.t("Применяю к запущенной игре…"));
         new Thread(new Runnable() {
             @Override public void run() {
                 String out = Fs.suOut(Perf.script(PKG, mask, nice, 2, 1, true));
-                final String msg = out == null ? "Не удалось выполнить через root"
-                    : out.contains("NOPID") ? "Игра не запущена: запустите её и нажмите снова" : out.trim();
+                final String msg = out == null ? Fr.t("Не удалось выполнить через root")
+                    : out.contains("NOPID") ? Fr.t("Игра не запущена: запустите её и нажмите снова") : out.trim();
                 handler.post(new Runnable() { @Override public void run() { say(msg); } });
             }
         }, "perf-now").start();
     }
 
     private void perfApplySwap(final boolean undo) {
-        if (!Fs.rootOk()) { say("Нужен root"); return; }
-        if (perfI == null) { say("Данные системы ещё не прочитаны"); return; }
+        if (!Fs.rootOk()) { say(Fr.t("Нужен root")); return; }
+        if (perfI == null) { say(Fr.t("Данные системы ещё не прочитаны")); return; }
         final int zi = Math.max(0, perfZram.getSelectedItemPosition());
         final int si = Math.max(0, perfSwp.getSelectedItemPosition());
-        if (!undo && zi == 0 && si == 0) { say("Выберите размер подкачки или swappiness"); return; }
+        if (!undo && zi == 0 && si == 0) { say(Fr.t("Выберите размер подкачки или swappiness")); return; }
         // исходные значения запоминаем один раз, до первого изменения
         if (!launcherPrefs.contains("orig_zram")) {
             launcherPrefs.edit().putLong("orig_zram", perfI.zramBytes).putInt("orig_swp", perfI.swappiness).apply();
         }
         final long origZ = launcherPrefs.getLong("orig_zram", perfI.zramBytes);
         final int origS = launcherPrefs.getInt("orig_swp", perfI.swappiness);
-        say(undo ? "Возвращаю подкачку…" : "Меняю подкачку…");
+        say(undo ? Fr.t("Возвращаю подкачку…") : Fr.t("Меняю подкачку…"));
         new Thread(new Runnable() {
             @Override public void run() {
                 StringBuilder res = new StringBuilder();
@@ -1293,14 +1293,14 @@ public class LauncherActivity extends Activity {
                 if (wantZ > 0 && wantZ != cur.zramBytes && cur.zramBytes > 0) {
                     long used = cur.swapTotalKb - cur.swapFreeKb;
                     if (cur.memAvailKb < used + 400L * 1024) {
-                        res.append("Мало свободной памяти, чтобы пересоздать подкачку (занято ").append(used / 1024).append(" МБ). Закройте приложения и повторите. ");
+                        res.append(Fr.t("Мало свободной памяти, чтобы пересоздать подкачку (занято ")).append(used / 1024).append(Fr.t(" МБ). Закройте приложения и повторите. "));
                         wantZ = 0;
                     } else {
                         String out = Fs.suOut(Perf.swapScript(wantZ, cur.zramBytes));
-                        res.append(out != null && out.contains("OK") ? "Подкачка: " + String.format(java.util.Locale.US, "%.1f", wantZ / 1073741824.0) + " ГБ. "
-                            : out != null && out.contains("NOZRAM") ? "На этом устройстве нет zram0. "
-                            : out != null && out.contains("NOSWAPOFF") ? "Не удалось отключить подкачку. "
-                            : "Не удалось сменить размер, прежний возвращён. ");
+                        res.append(out != null && out.contains("OK") ? Fr.t("Подкачка: ") + String.format(java.util.Locale.US, "%.1f", wantZ / 1073741824.0) + Fr.t(" ГБ. ")
+                            : out != null && out.contains("NOZRAM") ? Fr.t("На этом устройстве нет zram0. ")
+                            : out != null && out.contains("NOSWAPOFF") ? Fr.t("Не удалось отключить подкачку. ")
+                            : Fr.t("Не удалось сменить размер, прежний возвращён. "));
                     }
                 }
                 int wantS = undo ? origS : SWP_VAL[si];
@@ -1324,7 +1324,7 @@ public class LauncherActivity extends Activity {
 
     private void say(String s) {
         status.setText(s);
-        boolean bad = s != null && s.startsWith("Нет доступа");
+        boolean bad = s != null && s.startsWith(Fr.t("Нет доступа"));
         status.clearAnimation();
         if (bad) {
             status.setTextColor(0xFFFF3B4E);
@@ -1344,27 +1344,27 @@ public class LauncherActivity extends Activity {
     private void showAccessBanner() {
         if (noAccessShown || isFinishing()) return;
         noAccessShown = true;
-        String guide = "Лаунчер правит файл настроек игры, а Android не даёт обычным приложениям писать в папку другого приложения. Нужен один из двух способов:\n\n"
-            + "ВАРИАНТ A: root\nЕсли у вас Magisk, KernelSU или APatch, выдайте root-доступ приложению «SR3 Лаунчер» и нажмите «Проверить root».\n\n"
-            + "ВАРИАНТ B: Shizuku (без root)\n"
-            + "1. Установите Shizuku (кнопка «Скачать Shizuku»).\n"
-            + "2. Настройки → О телефоне → «Номер сборки», нажмите 7 раз (режим разработчика).\n"
-            + "3. Для разработчиков → включите «Беспроводная отладка» (нужен Wi‑Fi).\n"
-            + "4. В Shizuku: «Запуск через беспроводную отладку» → «Сопряжение», введите код из настроек, затем «Запустить».\n"
-            + "5. Вернитесь в лаунчер и нажмите «Разрешить» в окне Shizuku.\n"
-            + "   Вместо окна можно выдать доступ с компьютера: " + adbGrantCmd() + "\n\n"
-            + "Без root Shizuku придётся запускать заново после перезагрузки телефона.";
+        String guide = Fr.t("Лаунчер правит файл настроек игры, а Android не даёт обычным приложениям писать в папку другого приложения. Нужен один из двух способов:\n\n")
+            + Fr.t("ВАРИАНТ A: root\nЕсли у вас Magisk, KernelSU или APatch, выдайте root-доступ приложению «SR3 Лаунчер» и нажмите «Проверить root».\n\n")
+            + Fr.t("ВАРИАНТ B: Shizuku (без root)\n")
+            + Fr.t("1. Установите Shizuku (кнопка «Скачать Shizuku»).\n")
+            + Fr.t("2. Настройки → О телефоне → «Номер сборки», нажмите 7 раз (режим разработчика).\n")
+            + Fr.t("3. Для разработчиков → включите «Беспроводная отладка» (нужен Wi‑Fi).\n")
+            + Fr.t("4. В Shizuku: «Запуск через беспроводную отладку» → «Сопряжение», введите код из настроек, затем «Запустить».\n")
+            + Fr.t("5. Вернитесь в лаунчер и нажмите «Разрешить» в окне Shizuku.\n")
+            + Fr.t("   Вместо окна можно выдать доступ с компьютера: ") + adbGrantCmd() + "\n\n"
+            + Fr.t("Без root Shizuku придётся запускать заново после перезагрузки телефона.");
         final boolean shHere = pkgInstalled(SHIZUKU_PKG);
         new AlertDialog.Builder(this)
-            .setTitle("Нет доступа к файлам игры")
+            .setTitle(Fr.t("Нет доступа к файлам игры"))
             .setMessage(guide)
-            .setPositiveButton(shHere ? "Открыть Shizuku" : "Скачать Shizuku", new android.content.DialogInterface.OnClickListener() {
+            .setPositiveButton(shHere ? Fr.t("Открыть Shizuku") : Fr.t("Скачать Shizuku"), new android.content.DialogInterface.OnClickListener() {
                 public void onClick(android.content.DialogInterface d, int w) { if (shHere) openShizuku(); else downloadShizuku(); }
             })
-            .setNeutralButton("Проверить root", new android.content.DialogInterface.OnClickListener() {
+            .setNeutralButton(Fr.t("Проверить root"), new android.content.DialogInterface.OnClickListener() {
                 public void onClick(android.content.DialogInterface d, int w) { Fs.retryRoot(); refreshSetup(); }
             })
-            .setNegativeButton("Позже", null)
+            .setNegativeButton(Fr.t("Позже"), null)
             .show();
     }
 
@@ -1410,7 +1410,7 @@ public class LauncherActivity extends Activity {
         }
         String xml = readXml();
         if (xml == null) {
-            say(Fs.ready() ? "Файл настроек ещё не создан. Запустите игру один раз, затем откройте лаунчер снова." : "Нет доступа к файлам игры (нужен root или Shizuku). Пройдите шаги в карточке «Первичная настройка».");
+            say(Fs.ready() ? Fr.t("Файл настроек ещё не создан. Запустите игру один раз, затем откройте лаунчер снова.") : Fr.t("Нет доступа к файлам игры (нужен root или Shizuku). Пройдите шаги в карточке «Первичная настройка»."));
             resGroup.check(100);
             hudGroup.check(200);
             for (Opt o : opts) {
@@ -1434,7 +1434,7 @@ public class LauncherActivity extends Activity {
         if (sel < 0) for (int i = 0; i < resHeights.length; i++) if (resHeights[i] == h) { sel = i; break; }
         if (sel < 0) {
             // нестандартная высота: добавляем отдельный пункт
-            RadioButton r = radio(resGroup, "Текущее   " + widthFor(h) + "×" + h, 110);
+            RadioButton r = radio(resGroup, Fr.t("Текущее   ") + widthFor(h) + "×" + h, 110);
             int[] n = new int[resHeights.length + 1];
             System.arraycopy(resHeights, 0, n, 0, resHeights.length);
             n[resHeights.length] = h;
@@ -1467,7 +1467,7 @@ public class LauncherActivity extends Activity {
             if (cur != null) {
                 idx = -1;
                 for (int i = 0; i < o.values.length; i++) if (sameValue(o.values[i], cur, o.type)) { idx = i; break; }
-                if (idx < 0) { o.vals.add(cur); labels.add("Текущее: " + cur); idx = labels.size() - 1; }
+                if (idx < 0) { o.vals.add(cur); labels.add(Fr.t("Текущее: ") + cur); idx = labels.size() - 1; }
             }
             fillSpinner(o.spinner, labels, idx);
         }
@@ -1485,7 +1485,7 @@ public class LauncherActivity extends Activity {
         upSharpSeek.setProgress((int) Math.round(us * 100));
         swCasPs.setChecked("1".equals(PrefsEditor.getInKey(xml, "CASUsePixelShader", up)));
         loadExtras(xml);
-        say(Fs.exists(bakPath) ? "Исходные настройки сохранены, их можно вернуть." : "Настройки загружены.");
+        say(Fs.exists(bakPath) ? Fr.t("Исходные настройки сохранены, их можно вернуть.") : Fr.t("Настройки загружены."));
     }
 
     private static boolean sameValue(String a, String b, String type) {
@@ -1511,7 +1511,7 @@ public class LauncherActivity extends Activity {
         if (!SR3) return applyOther();
         String xml = readXml();
         if (xml == null) {
-            say("Файл настроек игры не найден. Запустите игру один раз.");
+            say(Fr.t("Файл настроек игры не найден. Запустите игру один раз."));
             return false;
         }
         if (!Fs.exists(bakPath)) {
@@ -1576,11 +1576,11 @@ public class LauncherActivity extends Activity {
 
         try {
             if (!writeBytes(prefPath, xml.getBytes("UTF-8"))) {
-                say("Не удалось записать файл настроек.");
+                say(Fr.t("Не удалось записать файл настроек."));
                 return false;
             }
         } catch (Exception e) {
-            say("Ошибка записи: " + e.getMessage());
+            say(Fr.t("Ошибка записи: ") + e.getMessage());
             return false;
         }
         return true;
@@ -1588,7 +1588,7 @@ public class LauncherActivity extends Activity {
 
     private void restoreBackup() {
         if (!Fs.exists(bakPath)) {
-            say("Исходной копии пока нет: она создаётся при первом сохранении.");
+            say(Fr.t("Исходной копии пока нет: она создаётся при первом сохранении."));
             return;
         }
         try {
@@ -1596,12 +1596,12 @@ public class LauncherActivity extends Activity {
             if (data != null && writeBytes(prefPath, data)) {
                 launcherPrefs.edit().remove("res_choice").apply();
                 loadFromFile();
-                say("Исходные настройки возвращены.");
+                say(Fr.t("Исходные настройки возвращены."));
             } else {
-                say("Не удалось вернуть исходные настройки.");
+                say(Fr.t("Не удалось вернуть исходные настройки."));
             }
         } catch (Exception e) {
-            say("Ошибка: " + e.getMessage());
+            say(Fr.t("Ошибка: ") + e.getMessage());
         }
     }
 
@@ -1622,7 +1622,7 @@ public class LauncherActivity extends Activity {
         /* слабый  */ {4, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 30, 60, 1},
     };
 
-    private static final String[] PRESET_NAMES = {"Минимум", "Низкие", "Средние", "Высокие", "Ультра"};
+    private static final String[] PRESET_NAMES = {Fr.t("Минимум"), Fr.t("Низкие"), Fr.t("Средние"), Fr.t("Высокие"), Fr.t("Ультра")};
     // формат тот же, что у AUTO: {разрешение, 14 параметров графики, резкость CAS, резкость апскейлера, динамическое разрешение}
     private static final int[][] PRESETS = {
         /* Минимум */ {4, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 35, 65, 1},
@@ -1651,83 +1651,83 @@ public class LauncherActivity extends Activity {
     }
 
     private static Ex sw(String key, String title, String hint, String[] path, int mode, int def) {
-        return ex(key, title, hint, path, mode, "integer", def, "0|Выкл.", "1|Вкл.");
+        return ex(key, title, hint, path, mode, "integer", def, Fr.t("0|Выкл."), Fr.t("1|Вкл."));
     }
 
     private void initOtherSpecs() {
         final String[] pct = {"0.500000|50%", "0.600000|60%", "0.700000|70%", "0.800000|80%", "0.900000|90%", "1.000000|100%"};
         String[] drs = TR ? TRD : join(SETUP, "DynamicResolutionScaling");
-        oMin = ex("MinScaling", "Мин. масштаб разрешения", "Ниже этого DRS не опускает (нужно включённое динамическое разрешение)", drs, 0, "double", 1, pct);
-        oMax = ex("MaxScaling", "Макс. масштаб разрешения", "Выше этого DRS не поднимается", drs, 0, "double", 3, pct);
+        oMin = ex("MinScaling", Fr.t("Мин. масштаб разрешения"), Fr.t("Ниже этого DRS не опускает (нужно включённое динамическое разрешение)"), drs, 0, "double", 1, pct);
+        oMax = ex("MaxScaling", Fr.t("Макс. масштаб разрешения"), Fr.t("Выше этого DRS не поднимается"), drs, 0, "double", 3, pct);
         oMin.special = true; oMax.special = true;
         oDrs = new Ex[] {
             oMin, oMax,
-            ex("DropDelayFrames", "Задержка снижения (кадров)", "Меньше: DRS реагирует на просадку быстрее", drs, 0, "integer", 1, "3|3", "6|6", "12|12", "24|24"),
-            ex("RaiseDelayFrames", "Задержка повышения (кадров)", "Больше: разрешение возвращается медленнее и скачет реже", drs, 0, "integer", 0, "4|4", "8|8", "16|16", "32|32"),
-            sw("UseGPUTime", "DRS по времени GPU", "Ориентироваться на время кадра GPU, а не CPU", drs, 0, 1),
+            ex("DropDelayFrames", Fr.t("Задержка снижения (кадров)"), Fr.t("Меньше: DRS реагирует на просадку быстрее"), drs, 0, "integer", 1, "3|3", "6|6", "12|12", "24|24"),
+            ex("RaiseDelayFrames", Fr.t("Задержка повышения (кадров)"), Fr.t("Больше: разрешение возвращается медленнее и скачет реже"), drs, 0, "integer", 0, "4|4", "8|8", "16|16", "32|32"),
+            sw("UseGPUTime", Fr.t("DRS по времени GPU"), Fr.t("Ориентироваться на время кадра GPU, а не CPU"), drs, 0, 1),
         };
         if (TR) {
             String[] aim = join(SETUP, "AutoAim");
             oGfx = new Ex[] {
-                ex("ShadowMode", "Тени: режим", "Значения 0–2 взяты из файла настроек", TRG, 1, "integer", 1, "0|0", "1|1 (по умолч.)", "2|2"),
-                ex("ShadowResolution", "Тени: разрешение", "Больше: чётче тени, тяжелее", TRG, 1, "integer", 1, "0|0 (низкое)", "1|1 (по умолч.)", "2|2", "3|3 (макс.)"),
-                ex("SSAOMode", "Затенение углов (SSAO)", "Чем выше, тем темнее картинка: в тёмных сценах (пещеры, свечи) свет почти пропадает. Рекомендуется 1", TRG, 1, "integer", 1, "0|Выкл.", "1|1 (по умолч.)", "2|2", "3|3"),
-                ex("DOFQuality", "Глубина резкости", "", TRG, 1, "integer", 1, "0|Выкл.", "1|1 (по умолч.)", "2|2", "3|3"),
-                ex("LODScale", "Детализация вдали (LOD)", "Больше: модели упрощаются позже", TRG, 1, "integer", 2, "0|0 (мин.)", "1|1", "2|2 (по умолч.)", "3|3 (макс.)"),
-                ex("TextureQuality", "Качество текстур", "Чем МЕНЬШЕ число, тем чётче текстуры (проверено в игре: 3 — самые мыльные). Авто: игра выбирает по видеопамяти", TRG, 1, "integer", 0, "-1|Авто (по умолч.)", "0|0 (макс. чёткость)", "1|1", "2|2", "3|3 (мин., мыльные)"),
-                ex("BestTextureFilter", "Фильтрация текстур", "Больше: чётче текстуры под углом", TRG, 1, "integer", 3, "0|0", "2|2", "4|4", "6|6 (по умолч.)"),
-                ex("ReflectionQuality", "Отражения", "", TRG, 1, "integer", 0, "0|0 (по умолч.)", "1|1", "2|2"),
-                ex("HairQuality", "Волосы (TressFX)", "Волосы Лары, тяжело для GPU", TRG, 1, "integer", 0, "0|0 (по умолч.)", "1|1"),
-                ex("AntiAliasingMode", "Сглаживание", "", TRG, 1, "integer", 1, "0|Выкл.", "1|1 (по умолч.)", "2|2", "3|3"),
-                sw("EnableTessellation", "Тесселяция", "Больше геометрии на земле и скалах", TRG, 1, 0),
-                sw("EnablePostProcess", "Пост-обработка", "", TRG, 1, 1),
-                sw("EnableMotionBlur", "Размытие движения", "", TRG, 1, 0),
-                sw("EnableScreenEffects", "Экранные эффекты", "", TRG, 1, 1),
-                sw("EnableHighPrecisionRT", "Высокая точность рендер-целей", "Меньше полос на градиентах, тяжелее", TRG, 1, 0),
-                ex("OptimisationResolutionMultiplier", "Масштаб рендера пресета", "Дополнительный множитель разрешения внутри пресетов игры", TRG, 2, "integer", 5,
+                ex("ShadowMode", Fr.t("Тени: режим"), Fr.t("Значения 0–2 взяты из файла настроек"), TRG, 1, "integer", 1, "0|0", Fr.t("1|1 (по умолч.)"), "2|2"),
+                ex("ShadowResolution", Fr.t("Тени: разрешение"), Fr.t("Больше: чётче тени, тяжелее"), TRG, 1, "integer", 1, Fr.t("0|0 (низкое)"), Fr.t("1|1 (по умолч.)"), "2|2", Fr.t("3|3 (макс.)")),
+                ex("SSAOMode", Fr.t("Затенение углов (SSAO)"), Fr.t("Чем выше, тем темнее картинка: в тёмных сценах (пещеры, свечи) свет почти пропадает. Рекомендуется 1"), TRG, 1, "integer", 1, Fr.t("0|Выкл."), Fr.t("1|1 (по умолч.)"), "2|2", "3|3"),
+                ex("DOFQuality", Fr.t("Глубина резкости"), "", TRG, 1, "integer", 1, Fr.t("0|Выкл."), Fr.t("1|1 (по умолч.)"), "2|2", "3|3"),
+                ex("LODScale", Fr.t("Детализация вдали (LOD)"), Fr.t("Больше: модели упрощаются позже"), TRG, 1, "integer", 2, Fr.t("0|0 (мин.)"), "1|1", Fr.t("2|2 (по умолч.)"), Fr.t("3|3 (макс.)")),
+                ex("TextureQuality", Fr.t("Качество текстур"), Fr.t("Чем МЕНЬШЕ число, тем чётче текстуры (проверено в игре: 3 — самые мыльные). Авто: игра выбирает по видеопамяти"), TRG, 1, "integer", 0, Fr.t("-1|Авто (по умолч.)"), Fr.t("0|0 (макс. чёткость)"), "1|1", "2|2", Fr.t("3|3 (мин., мыльные)")),
+                ex("BestTextureFilter", Fr.t("Фильтрация текстур"), Fr.t("Больше: чётче текстуры под углом"), TRG, 1, "integer", 3, "0|0", "2|2", "4|4", Fr.t("6|6 (по умолч.)")),
+                ex("ReflectionQuality", Fr.t("Отражения"), "", TRG, 1, "integer", 0, Fr.t("0|0 (по умолч.)"), "1|1", "2|2"),
+                ex("HairQuality", Fr.t("Волосы (TressFX)"), Fr.t("Волосы Лары, тяжело для GPU"), TRG, 1, "integer", 0, Fr.t("0|0 (по умолч.)"), "1|1"),
+                ex("AntiAliasingMode", Fr.t("Сглаживание"), "", TRG, 1, "integer", 1, Fr.t("0|Выкл."), Fr.t("1|1 (по умолч.)"), "2|2", "3|3"),
+                sw("EnableTessellation", Fr.t("Тесселяция"), Fr.t("Больше геометрии на земле и скалах"), TRG, 1, 0),
+                sw("EnablePostProcess", Fr.t("Пост-обработка"), "", TRG, 1, 1),
+                sw("EnableMotionBlur", Fr.t("Размытие движения"), "", TRG, 1, 0),
+                sw("EnableScreenEffects", Fr.t("Экранные эффекты"), "", TRG, 1, 1),
+                sw("EnableHighPrecisionRT", Fr.t("Высокая точность рендер-целей"), Fr.t("Меньше полос на градиентах, тяжелее"), TRG, 1, 0),
+                ex("OptimisationResolutionMultiplier", Fr.t("Масштаб рендера пресета"), Fr.t("Дополнительный множитель разрешения внутри пресетов игры"), TRG, 2, "integer", 5,
                     "50|50%", "60|60%", "70|70%", "80|80%", "90|90%", "100|100%"),
             };
             oFrame = new Ex[0];
             oEngine = new Ex[] {
-                sw("EnableIdxD3D11Threaded", "Многопоточный рендер", "Может поднять FPS, на некоторых GPU вызывает сбои", D3D_CONFIG, 0, 1),
-                ex("IdxD3D11ThreadedMaxQueuedFrames", "Очередь кадров", "0: минимум задержки, больше: плавнее, но с задержкой управления", D3D_CONFIG, 0, "integer", 0, "0|0", "1|1", "2|2", "3|3"),
-                sw("VulkanUseSeparateSubmitThread", "Отдельный поток отправки (Vulkan)", "Разгружает главный поток", D3D_CONFIG, 0, 1),
-                sw("UseFileBackedMemory", "Файловая память игры", "Часть памяти игры берётся из файла на диске. Если игра вылетает с «buffer mapping», выключите", join(SETUP, "MemoryFlags"), 0, 0),
-                sw("VulkanUseSecondaryCmdBuffersForGraphicsPass", "Вторичные буферы команд (Vulkan)", "Экспериментально, по умолчанию выкл.", D3D_CONFIG, 0, 0),
-                sw("EnableShaderDeduplicator", "Дедупликация шейдеров", "Меньше шейдеров в кэше", D3D_CONFIG, 0, 1),
-                sw("EnableF3DWarmer", "Прогрев шейдеров", "Меньше подлагов в начале", D3D_CONFIG, 0, 1),
-                sw("AllowSM5", "Разрешить Shader Model 5", "", D3D_CONFIG, 0, 1),
-                sw("feral_allow_compute", "Вычислительные шейдеры", "", SETUP, 0, 1),
-                sw("feral_allow_tressfx", "TressFX разрешён", "", SETUP, 0, 1),
-                sw("feral_allow_high_precision", "Высокая точность (float)", "", SETUP, 0, 0),
-                sw("PrecreateShaders", "Создавать шейдеры заранее", "", SETUP, 0, 1),
+                sw("EnableIdxD3D11Threaded", Fr.t("Многопоточный рендер"), Fr.t("Может поднять FPS, на некоторых GPU вызывает сбои"), D3D_CONFIG, 0, 1),
+                ex("IdxD3D11ThreadedMaxQueuedFrames", Fr.t("Очередь кадров"), Fr.t("0: минимум задержки, больше: плавнее, но с задержкой управления"), D3D_CONFIG, 0, "integer", 0, "0|0", "1|1", "2|2", "3|3"),
+                sw("VulkanUseSeparateSubmitThread", Fr.t("Отдельный поток отправки (Vulkan)"), Fr.t("Разгружает главный поток"), D3D_CONFIG, 0, 1),
+                sw("UseFileBackedMemory", Fr.t("Файловая память игры"), Fr.t("Часть памяти игры берётся из файла на диске. Если игра вылетает с «buffer mapping», выключите"), join(SETUP, "MemoryFlags"), 0, 0),
+                sw("VulkanUseSecondaryCmdBuffersForGraphicsPass", Fr.t("Вторичные буферы команд (Vulkan)"), Fr.t("Экспериментально, по умолчанию выкл."), D3D_CONFIG, 0, 0),
+                sw("EnableShaderDeduplicator", Fr.t("Дедупликация шейдеров"), Fr.t("Меньше шейдеров в кэше"), D3D_CONFIG, 0, 1),
+                sw("EnableF3DWarmer", Fr.t("Прогрев шейдеров"), Fr.t("Меньше подлагов в начале"), D3D_CONFIG, 0, 1),
+                sw("AllowSM5", Fr.t("Разрешить Shader Model 5"), "", D3D_CONFIG, 0, 1),
+                sw("feral_allow_compute", Fr.t("Вычислительные шейдеры"), "", SETUP, 0, 1),
+                sw("feral_allow_tressfx", Fr.t("TressFX разрешён"), "", SETUP, 0, 1),
+                sw("feral_allow_high_precision", Fr.t("Высокая точность (float)"), "", SETUP, 0, 0),
+                sw("PrecreateShaders", Fr.t("Создавать шейдеры заранее"), "", SETUP, 0, 1),
             };
             oCtl = new Ex[] {
-                sw("DisableCameraShake", "Отключить тряску камеры", "", SETUP, 0, 0),
-                ex("CameraShakeScale", "Сила тряски камеры", "", SETUP, 0, "double", 2, "0.000000|0%", "0.300000|30%", "0.600000|60% (по умолч.)", "1.000000|100%"),
-                sw("AlwaysOnCrosshair", "Прицел всегда на экране", "", SETUP, 0, 0),
-                sw("DoubleTapToAimToggle", "Прицеливание двойным касанием", "", SETUP, 0, 0),
-                sw("EnableMotionAim", "Прицел наклоном телефона", "", SETUP, 0, 0),
-                sw("EnableCameraOffset", "Смещение камеры", "", SETUP, 0, 0),
-                ex("CameraOffsetValue", "Величина смещения камеры", "", SETUP, 0, "integer", 1, "0|0", "25|25 (по умолч.)", "50|50"),
-                ex("AutoAimMode", "Автоприцел", "Режим помощи при прицеливании", aim, 0, "integer", 1, "0|0", "1|1 (по умолч.)", "2|2"),
-                sw("HapticsEnabled", "Вибрация", "", SETUP, 0, 1),
-                ex("GameplayHapticStrength", "Сила вибрации", "", SETUP, 0, "double", 1, "0.000000|0%", "0.200000|20% (по умолч.)", "0.500000|50%", "1.000000|100%"),
-                sw("ShowButtonHints", "Подсказки кнопок", "", SETUP, 0, 1),
+                sw("DisableCameraShake", Fr.t("Отключить тряску камеры"), "", SETUP, 0, 0),
+                ex("CameraShakeScale", Fr.t("Сила тряски камеры"), "", SETUP, 0, "double", 2, "0.000000|0%", "0.300000|30%", Fr.t("0.600000|60% (по умолч.)"), "1.000000|100%"),
+                sw("AlwaysOnCrosshair", Fr.t("Прицел всегда на экране"), "", SETUP, 0, 0),
+                sw("DoubleTapToAimToggle", Fr.t("Прицеливание двойным касанием"), "", SETUP, 0, 0),
+                sw("EnableMotionAim", Fr.t("Прицел наклоном телефона"), "", SETUP, 0, 0),
+                sw("EnableCameraOffset", Fr.t("Смещение камеры"), "", SETUP, 0, 0),
+                ex("CameraOffsetValue", Fr.t("Величина смещения камеры"), "", SETUP, 0, "integer", 1, "0|0", Fr.t("25|25 (по умолч.)"), "50|50"),
+                ex("AutoAimMode", Fr.t("Автоприцел"), Fr.t("Режим помощи при прицеливании"), aim, 0, "integer", 1, "0|0", Fr.t("1|1 (по умолч.)"), "2|2"),
+                sw("HapticsEnabled", Fr.t("Вибрация"), "", SETUP, 0, 1),
+                ex("GameplayHapticStrength", Fr.t("Сила вибрации"), "", SETUP, 0, "double", 1, "0.000000|0%", Fr.t("0.200000|20% (по умолч.)"), "0.500000|50%", "1.000000|100%"),
+                sw("ShowButtonHints", Fr.t("Подсказки кнопок"), "", SETUP, 0, 1),
             };
             oMisc = new Ex[] {
-                sw("AllCollectibles", "Все коллекционные предметы", "Служебный флаг игры, действие не проверено", SETUP, 0, 0),
-                sw("AllUpgrades", "Все улучшения", "Служебный флаг игры, действие не проверено", SETUP, 0, 0),
-                sw("EnableAllDLCUnlocks", "Разблокировать весь DLC", "Служебный флаг игры, действие не проверено", SETUP, 0, 0),
+                sw("AllCollectibles", Fr.t("Все коллекционные предметы"), Fr.t("Служебный флаг игры, действие не проверено"), SETUP, 0, 0),
+                sw("AllUpgrades", Fr.t("Все улучшения"), Fr.t("Служебный флаг игры, действие не проверено"), SETUP, 0, 0),
+                sw("EnableAllDLCUnlocks", Fr.t("Разблокировать весь DLC"), Fr.t("Служебный флаг игры, действие не проверено"), SETUP, 0, 0),
             };
             oSys = new Ex[] {
-                sw("RenderUnderNotch", "Рисовать под вырезом экрана", "", SETUP, 0, 1),
-                sw("AllowAutorotate", "Автоповорот", "", SETUP, 0, 1),
-                sw("AllowPausing", "Пауза по кнопке", "", SETUP, 0, 1),
-                sw("PauseOnSuspend", "Пауза при сворачивании", "", SETUP, 0, 1),
-                sw("AllowSendCrashReports", "Отправлять отчёты о сбоях", "", SETUP, 0, 0),
-                sw("AllowSendUsageData", "Отправлять данные об использовании", "", SETUP, 0, 0),
-                sw("DoShowBatteryOptimisationsWarning", "Предупреждение об оптимизации батареи", "", SETUP, 0, 1),
+                sw("RenderUnderNotch", Fr.t("Рисовать под вырезом экрана"), "", SETUP, 0, 1),
+                sw("AllowAutorotate", Fr.t("Автоповорот"), "", SETUP, 0, 1),
+                sw("AllowPausing", Fr.t("Пауза по кнопке"), "", SETUP, 0, 1),
+                sw("PauseOnSuspend", Fr.t("Пауза при сворачивании"), "", SETUP, 0, 1),
+                sw("AllowSendCrashReports", Fr.t("Отправлять отчёты о сбоях"), "", SETUP, 0, 0),
+                sw("AllowSendUsageData", Fr.t("Отправлять данные об использовании"), "", SETUP, 0, 0),
+                sw("DoShowBatteryOptimisationsWarning", Fr.t("Предупреждение об оптимизации батареи"), "", SETUP, 0, 1),
             };
             exAll = new Ex[][] {oGfx, oDrs, oEngine, oCtl, oMisc, oSys};
             oPresets = new String[][] {
@@ -1744,66 +1744,66 @@ public class LauncherActivity extends Activity {
             };
         } else if (HM) {
             oGfx = new Ex[] {
-                sw("Bloom", "Свечение (Bloom)", "", HMG, 3, 1),
-                ex("Bokeh", "Боке", "Размытие фона бликами", HMG, 3, "integer", 2, "0|Выкл.", "1|1", "2|2"),
-                sw("FXAA", "Сглаживание FXAA", "", HMG, 3, 1),
-                                ex("LevelOfDetail", "Детализация вдали (LOD)", "", HMG, 3, "integer", 3, "0|0 (мин.)", "1|1", "2|2", "3|3 (макс.)"),
-                ex("ShadowQuality", "Тени", "", HMG, 3, "integer", 3, "0|0 (мин.)", "1|1", "2|2", "3|3", "4|4 (макс.)"),
-                ex("SSAO", "Затенение углов (SSAO)", "Чем выше, тем темнее картинка. Игра принимает значения до 2: больше она сама сбрасывает при старте. Рекомендуется 1", HMG, 3, "integer", 0, "0|Выкл.", "1|1", "2|2 (макс.)"),
-                sw("LPV", "Глобальное освещение (LPV)", "Тяжело для GPU", HMG, 3, 0),
-                ex("MirrorQuality", "Зеркала и отражения", "", HMG, 3, "integer", 3, "0|0 (мин.)", "1|1", "2|2", "3|3 (макс.)"),
-                sw("Tessellation", "Тесселяция", "", HMG, 3, 0),
-                ex("TextureFilter", "Фильтрация текстур", "", HMG, 3, "integer", 3, "0|0 (мин.)", "1|1", "2|2", "3|3 (макс.)"),
-                ex("TextureResolution", "Разрешение текстур", "Игра принимает значения 0 и 1: большее она сама сбрасывает при старте", HMG, 3, "integer", 1, "0|0 (низкое)", "1|1 (макс.)"),
-                ex("ResolutionScalingMultiplier", "Масштаб рендера", "Внутренний масштаб разрешения, ниже: быстрее", SETUP, 3, "double", 5, pct),
+                sw("Bloom", Fr.t("Свечение (Bloom)"), "", HMG, 3, 1),
+                ex("Bokeh", Fr.t("Боке"), Fr.t("Размытие фона бликами"), HMG, 3, "integer", 2, Fr.t("0|Выкл."), "1|1", "2|2"),
+                sw("FXAA", Fr.t("Сглаживание FXAA"), "", HMG, 3, 1),
+                                ex("LevelOfDetail", Fr.t("Детализация вдали (LOD)"), "", HMG, 3, "integer", 3, Fr.t("0|0 (мин.)"), "1|1", "2|2", Fr.t("3|3 (макс.)")),
+                ex("ShadowQuality", Fr.t("Тени"), "", HMG, 3, "integer", 3, Fr.t("0|0 (мин.)"), "1|1", "2|2", "3|3", Fr.t("4|4 (макс.)")),
+                ex("SSAO", Fr.t("Затенение углов (SSAO)"), Fr.t("Чем выше, тем темнее картинка. Игра принимает значения до 2: больше она сама сбрасывает при старте. Рекомендуется 1"), HMG, 3, "integer", 0, Fr.t("0|Выкл."), "1|1", Fr.t("2|2 (макс.)")),
+                sw("LPV", Fr.t("Глобальное освещение (LPV)"), Fr.t("Тяжело для GPU"), HMG, 3, 0),
+                ex("MirrorQuality", Fr.t("Зеркала и отражения"), "", HMG, 3, "integer", 3, Fr.t("0|0 (мин.)"), "1|1", "2|2", Fr.t("3|3 (макс.)")),
+                sw("Tessellation", Fr.t("Тесселяция"), "", HMG, 3, 0),
+                ex("TextureFilter", Fr.t("Фильтрация текстур"), "", HMG, 3, "integer", 3, Fr.t("0|0 (мин.)"), "1|1", "2|2", Fr.t("3|3 (макс.)")),
+                ex("TextureResolution", Fr.t("Разрешение текстур"), Fr.t("Игра принимает значения 0 и 1: большее она сама сбрасывает при старте"), HMG, 3, "integer", 1, Fr.t("0|0 (низкое)"), Fr.t("1|1 (макс.)")),
+                ex("ResolutionScalingMultiplier", Fr.t("Масштаб рендера"), Fr.t("Внутренний масштаб разрешения, ниже: быстрее"), SETUP, 3, "double", 5, pct),
             };
             oFrame = new Ex[] {
-                sw("EnableFramerateManager", "Менеджер частоты кадров", "Игра сама меняет FPS между отзывчивым и простаивающим режимом", D3D_CONFIG, 0, 1),
-                ex("FramerateManagerResponsiveFPSDuration", "Время активного режима, мс", "Сколько держится высокий FPS после ввода", D3D_CONFIG, 0, "integer", 3,
+                sw("EnableFramerateManager", Fr.t("Менеджер частоты кадров"), Fr.t("Игра сама меняет FPS между отзывчивым и простаивающим режимом"), D3D_CONFIG, 0, 1),
+                ex("FramerateManagerResponsiveFPSDuration", Fr.t("Время активного режима, мс"), Fr.t("Сколько держится высокий FPS после ввода"), D3D_CONFIG, 0, "integer", 3,
                     "1000|1000", "5000|5000", "10000|10000", "30000|30000"),
-                ex("IdleFPS", "FPS в простое", "Лимит в меню и когда ничего не происходит", SETUP, 3, "integer", 2, "15|15", "20|20", "30|30", "60|60"),
-                sw("VSync", "Вертикальная синхронизация", "Включена: FPS не выше частоты экрана", HMG, 0, 1),
+                ex("IdleFPS", Fr.t("FPS в простое"), Fr.t("Лимит в меню и когда ничего не происходит"), SETUP, 3, "integer", 2, "15|15", "20|20", "30|30", "60|60"),
+                sw("VSync", Fr.t("Вертикальная синхронизация"), Fr.t("Включена: FPS не выше частоты экрана"), HMG, 0, 1),
             };
             oEngine = new Ex[] {
-                sw("EnableIdxD3D11Threaded", "Многопоточный рендер", "Может поднять FPS, на некоторых GPU вызывает сбои", D3D_CONFIG, 0, 1),
-                sw("VulkanUseSeparateSubmitThread", "Отдельный поток отправки (Vulkan)", "Разгружает главный поток", D3D_CONFIG, 0, 1),
-                sw("UseFileBackedMemory", "Файловая память игры", "Часть памяти игры берётся из файла на диске. Если игра вылетает с «buffer mapping», выключите", join(SETUP, "MemoryFlags"), 0, 0),
-                sw("LazyShaderCreation", "Ленивое создание шейдеров", "", D3D_CONFIG, 0, 1),
-                sw("EnableF3DWarmer", "Прогрев шейдеров", "Меньше подлагов в начале", D3D_CONFIG, 0, 1),
-                sw("EnableShaderDeduplicator", "Дедупликация шейдеров", "", D3D_CONFIG, 0, 1),
-                sw("EnableMergePasses", "Объединение проходов рендера", "", SETUP, 0, 1),
-                sw("EnableMergeShadowmapsStandalone", "Объединение карт теней", "", SETUP, 0, 1),
-                sw("UseReorderedFogPass", "Переупорядоченный проход тумана", "", SETUP, 0, 1),
-                sw("EnableCrowdInstancing", "Инстансинг толпы", "", SETUP, 0, 1),
-                sw("EnableScatterInstancing", "Инстансинг растительности", "", SETUP, 0, 1),
-                sw("AvoidSmallBlitPasses", "Пропуск мелких проходов копирования", "", SETUP, 0, 1),
-                sw("DrawCallStencilClear", "Очистка стенсила в вызове отрисовки", "", SETUP, 0, 1),
+                sw("EnableIdxD3D11Threaded", Fr.t("Многопоточный рендер"), Fr.t("Может поднять FPS, на некоторых GPU вызывает сбои"), D3D_CONFIG, 0, 1),
+                sw("VulkanUseSeparateSubmitThread", Fr.t("Отдельный поток отправки (Vulkan)"), Fr.t("Разгружает главный поток"), D3D_CONFIG, 0, 1),
+                sw("UseFileBackedMemory", Fr.t("Файловая память игры"), Fr.t("Часть памяти игры берётся из файла на диске. Если игра вылетает с «buffer mapping», выключите"), join(SETUP, "MemoryFlags"), 0, 0),
+                sw("LazyShaderCreation", Fr.t("Ленивое создание шейдеров"), "", D3D_CONFIG, 0, 1),
+                sw("EnableF3DWarmer", Fr.t("Прогрев шейдеров"), Fr.t("Меньше подлагов в начале"), D3D_CONFIG, 0, 1),
+                sw("EnableShaderDeduplicator", Fr.t("Дедупликация шейдеров"), "", D3D_CONFIG, 0, 1),
+                sw("EnableMergePasses", Fr.t("Объединение проходов рендера"), "", SETUP, 0, 1),
+                sw("EnableMergeShadowmapsStandalone", Fr.t("Объединение карт теней"), "", SETUP, 0, 1),
+                sw("UseReorderedFogPass", Fr.t("Переупорядоченный проход тумана"), "", SETUP, 0, 1),
+                sw("EnableCrowdInstancing", Fr.t("Инстансинг толпы"), "", SETUP, 0, 1),
+                sw("EnableScatterInstancing", Fr.t("Инстансинг растительности"), "", SETUP, 0, 1),
+                sw("AvoidSmallBlitPasses", Fr.t("Пропуск мелких проходов копирования"), "", SETUP, 0, 1),
+                sw("DrawCallStencilClear", Fr.t("Очистка стенсила в вызове отрисовки"), "", SETUP, 0, 1),
             };
             oMisc = new Ex[] {
-                ex("CrowdDensityMultiplier", "Плотность толпы", "Меньше людей в толпе: больше FPS", SETUP, 0, "double", 1, "0.500000|50%", "1.000000|100% (по умолч.)", "1.500000|150%", "2.000000|200%"),
-                ex("MaximumParticleCount", "Лимит частиц", "Дым, искры, пыль", SETUP, 0, "integer", 2, "25000|25 тыс.", "50000|50 тыс.", "100000|100 тыс. (по умолч.)", "200000|200 тыс."),
-                sw("DisableAllClothesPhysics", "Отключить физику одежды", "Даёт прирост FPS на слабом железе", SETUP, 0, 0),
-                sw("DisableClothWindPhysics", "Отключить ветер на одежде", "", SETUP, 0, 0),
-                sw("DisableShadows", "Отключить тени полностью", "Резко повышает FPS, картинка плоская", SETUP, 0, 0),
-                sw("SkipLegalMovies", "Флаг «пропускать заставки»", "Ставит флаг игры, но логотипы Feral и Glacier2 эта версия всё равно показывает (проверено); их можно пропустить касанием экрана", HMG, 0, 1),
-                sw("AutoSkipCutscenes", "Пропускать ролики", "", SETUP, 0, 0),
-                sw("AutoSkipSequences", "Пропускать вставки", "", SETUP, 0, 0),
-                sw("AutoDropBodyWhenEnteringCover", "Бросать тело при входе в укрытие", "", SETUP, 0, 1),
+                ex("CrowdDensityMultiplier", Fr.t("Плотность толпы"), Fr.t("Меньше людей в толпе: больше FPS"), SETUP, 0, "double", 1, "0.500000|50%", Fr.t("1.000000|100% (по умолч.)"), "1.500000|150%", "2.000000|200%"),
+                ex("MaximumParticleCount", Fr.t("Лимит частиц"), Fr.t("Дым, искры, пыль"), SETUP, 0, "integer", 2, Fr.t("25000|25 тыс."), Fr.t("50000|50 тыс."), Fr.t("100000|100 тыс. (по умолч.)"), Fr.t("200000|200 тыс.")),
+                sw("DisableAllClothesPhysics", Fr.t("Отключить физику одежды"), Fr.t("Даёт прирост FPS на слабом железе"), SETUP, 0, 0),
+                sw("DisableClothWindPhysics", Fr.t("Отключить ветер на одежде"), "", SETUP, 0, 0),
+                sw("DisableShadows", Fr.t("Отключить тени полностью"), Fr.t("Резко повышает FPS, картинка плоская"), SETUP, 0, 0),
+                sw("SkipLegalMovies", Fr.t("Флаг «пропускать заставки»"), Fr.t("Ставит флаг игры, но логотипы Feral и Glacier2 эта версия всё равно показывает (проверено); их можно пропустить касанием экрана"), HMG, 0, 1),
+                sw("AutoSkipCutscenes", Fr.t("Пропускать ролики"), "", SETUP, 0, 0),
+                sw("AutoSkipSequences", Fr.t("Пропускать вставки"), "", SETUP, 0, 0),
+                sw("AutoDropBodyWhenEnteringCover", Fr.t("Бросать тело при входе в укрытие"), "", SETUP, 0, 1),
             };
             oCtl = new Ex[] {
-                sw("EnableLockon", "Помощь при прицеливании", "", SETUP, 0, 1),
-                sw("EnableLockonOverlay", "Показ захвата цели", "", SETUP, 0, 0),
-                sw("AdditionalMotionControls", "Дополнительное управление наклоном", "", SETUP, 0, 0),
-                sw("Enabled", "Прицел по движению (MotionAim)", "", join(SETUP, "MotionAimSettings"), 0, 1),
+                sw("EnableLockon", Fr.t("Помощь при прицеливании"), "", SETUP, 0, 1),
+                sw("EnableLockonOverlay", Fr.t("Показ захвата цели"), "", SETUP, 0, 0),
+                sw("AdditionalMotionControls", Fr.t("Дополнительное управление наклоном"), "", SETUP, 0, 0),
+                sw("Enabled", Fr.t("Прицел по движению (MotionAim)"), "", join(SETUP, "MotionAimSettings"), 0, 1),
             };
             oSys = new Ex[] {
-                sw("RenderUnderNotch", "Рисовать под вырезом экрана", "", SETUP, 0, 1),
-                sw("AllowAutorotate", "Автоповорот", "", SETUP, 0, 1),
-                sw("AllowPausing", "Пауза по кнопке", "", SETUP, 0, 1),
-                sw("PauseOnSuspend", "Пауза при сворачивании", "", SETUP, 0, 1),
-                sw("AllowSendCrashReports", "Отправлять отчёты о сбоях", "", SETUP, 0, 0),
-                sw("AllowSendUsageData", "Отправлять данные об использовании", "", SETUP, 0, 0),
-                sw("DoShowBatteryOptimisationsWarning", "Предупреждение об оптимизации батареи", "", SETUP, 0, 1),
+                sw("RenderUnderNotch", Fr.t("Рисовать под вырезом экрана"), "", SETUP, 0, 1),
+                sw("AllowAutorotate", Fr.t("Автоповорот"), "", SETUP, 0, 1),
+                sw("AllowPausing", Fr.t("Пауза по кнопке"), "", SETUP, 0, 1),
+                sw("PauseOnSuspend", Fr.t("Пауза при сворачивании"), "", SETUP, 0, 1),
+                sw("AllowSendCrashReports", Fr.t("Отправлять отчёты о сбоях"), "", SETUP, 0, 0),
+                sw("AllowSendUsageData", Fr.t("Отправлять данные об использовании"), "", SETUP, 0, 0),
+                sw("DoShowBatteryOptimisationsWarning", Fr.t("Предупреждение об оптимизации батареи"), "", SETUP, 0, 1),
             };
             exAll = new Ex[][] {oGfx, oDrs, oFrame, oEngine, oMisc, oCtl, oSys};
             oPresets = new String[][] {
@@ -1820,60 +1820,60 @@ public class LauncherActivity extends Activity {
             };
         } else {
             // GRID Legends: значения лежат плоско в GraphicsSettings; пределы взяты из того, во что игра урезает слишком большие значения при старте
-            String[] n03 = {"0|0 (мин.)", "1|1", "2|2", "3|3 (макс.)"};
+            String[] n03 = {Fr.t("0|0 (мин.)"), "1|1", "2|2", Fr.t("3|3 (макс.)")};
             oGfx = new Ex[] {
-                ex("TextureQuality", "Качество текстур", "", GLG, 4, "integer", 0, n03),
-                ex("Shadows", "Тени", "", GLG, 4, "integer", 0, n03),
-                ex("LightingQuality", "Освещение", "", GLG, 4, "integer", 0, "0|0 (мин.)", "1|1 (макс.)"),
-                ex("AmbientOcclusion", "Затенение углов (AO)", "Чем выше, тем темнее картинка. Рекомендуется 1", GLG, 4, "integer", 0, n03),
-                ex("ScreenSpaceReflections", "Отражения в экране (SSR)", "", GLG, 4, "integer", 0, "0|0 (мин.)", "1|1", "2|2 (макс.)"),
-                ex("VehicleReflections", "Отражения на машинах", "", GLG, 4, "integer", 0, "0|0 (мин.)", "1|1", "2|2", "3|3", "4|4 (макс.)"),
-                ex("Mirrors", "Зеркала", "", GLG, 4, "integer", 0, n03),
-                ex("LODQuality", "Детализация вдали (LOD)", "", GLG, 4, "integer", 1, "0|0 (мин.)", "1|1", "2|2 (макс.)"),
-                ex("Crowds", "Зрители", "", GLG, 4, "integer", 1, n03),
-                ex("GroundCover", "Трава и кусты", "", GLG, 4, "integer", 2, n03),
-                ex("Particles", "Частицы", "", GLG, 4, "integer", 0, n03),
-                ex("WeatherEffects", "Погодные эффекты", "", GLG, 4, "integer", 1, n03),
-                ex("VolumetricLights", "Объёмный свет", "Тяжело для GPU", GLG, 4, "integer", 0, "0|Выкл.", "1|1", "2|2 (макс.)"),
-                ex("SmokeShadows", "Тени от дыма", "", GLG, 4, "integer", 0, "0|Выкл.", "1|1", "2|2 (макс.)"),
-                ex("Skidmarks", "Следы шин", "", GLG, 4, "integer", 1, "0|0 (мин.)", "1|1", "2|2 (макс.)"),
-                ex("PostProcess", "Постобработка", "", GLG, 4, "integer", 1, "0|0 (мин.)", "1|1", "2|2 (макс.)"),
-                ex("AntiAliasing", "Сглаживание", "0 выкл.; значения 1–3 взяты из файла настроек", GLG, 4, "integer", 2, "0|Выкл.", "1|1", "2|2", "3|3"),
-                sw("MotionBlur", "Размытие движения", "", GLG, 0, 0),
+                ex("TextureQuality", Fr.t("Качество текстур"), "", GLG, 4, "integer", 0, n03),
+                ex("Shadows", Fr.t("Тени"), "", GLG, 4, "integer", 0, n03),
+                ex("LightingQuality", Fr.t("Освещение"), "", GLG, 4, "integer", 0, Fr.t("0|0 (мин.)"), Fr.t("1|1 (макс.)")),
+                ex("AmbientOcclusion", Fr.t("Затенение углов (AO)"), Fr.t("Чем выше, тем темнее картинка. Рекомендуется 1"), GLG, 4, "integer", 0, n03),
+                ex("ScreenSpaceReflections", Fr.t("Отражения в экране (SSR)"), "", GLG, 4, "integer", 0, Fr.t("0|0 (мин.)"), "1|1", Fr.t("2|2 (макс.)")),
+                ex("VehicleReflections", Fr.t("Отражения на машинах"), "", GLG, 4, "integer", 0, Fr.t("0|0 (мин.)"), "1|1", "2|2", "3|3", Fr.t("4|4 (макс.)")),
+                ex("Mirrors", Fr.t("Зеркала"), "", GLG, 4, "integer", 0, n03),
+                ex("LODQuality", Fr.t("Детализация вдали (LOD)"), "", GLG, 4, "integer", 1, Fr.t("0|0 (мин.)"), "1|1", Fr.t("2|2 (макс.)")),
+                ex("Crowds", Fr.t("Зрители"), "", GLG, 4, "integer", 1, n03),
+                ex("GroundCover", Fr.t("Трава и кусты"), "", GLG, 4, "integer", 2, n03),
+                ex("Particles", Fr.t("Частицы"), "", GLG, 4, "integer", 0, n03),
+                ex("WeatherEffects", Fr.t("Погодные эффекты"), "", GLG, 4, "integer", 1, n03),
+                ex("VolumetricLights", Fr.t("Объёмный свет"), Fr.t("Тяжело для GPU"), GLG, 4, "integer", 0, Fr.t("0|Выкл."), "1|1", Fr.t("2|2 (макс.)")),
+                ex("SmokeShadows", Fr.t("Тени от дыма"), "", GLG, 4, "integer", 0, Fr.t("0|Выкл."), "1|1", Fr.t("2|2 (макс.)")),
+                ex("Skidmarks", Fr.t("Следы шин"), "", GLG, 4, "integer", 1, Fr.t("0|0 (мин.)"), "1|1", Fr.t("2|2 (макс.)")),
+                ex("PostProcess", Fr.t("Постобработка"), "", GLG, 4, "integer", 1, Fr.t("0|0 (мин.)"), "1|1", Fr.t("2|2 (макс.)")),
+                ex("AntiAliasing", Fr.t("Сглаживание"), Fr.t("0 выкл.; значения 1–3 взяты из файла настроек"), GLG, 4, "integer", 2, Fr.t("0|Выкл."), "1|1", "2|2", "3|3"),
+                sw("MotionBlur", Fr.t("Размытие движения"), "", GLG, 0, 0),
                 sw("HDR", "HDR", "", GLG, 0, 0),
-                sw("ReduceVisibleRain", "Меньше видимого дождя", "", GLG, 0, 0),
-                sw("FireworksAndConfetti", "Фейерверки и конфетти", "", GLG, 0, 1),
-                sw("VerticalSync", "Вертикальная синхронизация", "Включена: FPS не выше частоты экрана", GLG, 0, 0),
+                sw("ReduceVisibleRain", Fr.t("Меньше видимого дождя"), "", GLG, 0, 0),
+                sw("FireworksAndConfetti", Fr.t("Фейерверки и конфетти"), "", GLG, 0, 1),
+                sw("VerticalSync", Fr.t("Вертикальная синхронизация"), Fr.t("Включена: FPS не выше частоты экрана"), GLG, 0, 0),
             };
             // динамическое разрешение: диапазон масштаба кадра лежит в блоках пресетов, включение (DynamicResolution) — в основном ключе
             oDrs = new Ex[] {
-                ex("FrameSizeMinimumPercentage", "Мин. размер кадра, %", "Ниже этого динамическое разрешение не опускается", GLG, 5, "integer", 2, "40|40", "50|50", "60|60", "70|70", "80|80", "90|90", "100|100"),
-                ex("FrameSizeMaximumPercentage", "Макс. размер кадра, %", "Выше этого не поднимается", GLG, 5, "integer", 4, "50|50", "60|60", "70|70", "80|80", "90|90", "100|100"),
-                ex("OptimisationResolutionMultiplier", "Множитель разрешения пресета, %", "Дополнительный множитель внутри пресетов игры", GLG, 5, "integer", 5, "50|50", "60|60", "70|70", "80|80", "90|90", "100|100"),
+                ex("FrameSizeMinimumPercentage", Fr.t("Мин. размер кадра, %"), Fr.t("Ниже этого динамическое разрешение не опускается"), GLG, 5, "integer", 2, "40|40", "50|50", "60|60", "70|70", "80|80", "90|90", "100|100"),
+                ex("FrameSizeMaximumPercentage", Fr.t("Макс. размер кадра, %"), Fr.t("Выше этого не поднимается"), GLG, 5, "integer", 4, "50|50", "60|60", "70|70", "80|80", "90|90", "100|100"),
+                ex("OptimisationResolutionMultiplier", Fr.t("Множитель разрешения пресета, %"), Fr.t("Дополнительный множитель внутри пресетов игры"), GLG, 5, "integer", 5, "50|50", "60|60", "70|70", "80|80", "90|90", "100|100"),
             };
             oFrame = new Ex[0];
             oEngine = new Ex[] {
-                sw("EnableFramerateManager", "Менеджер частоты кадров", "Игра сама меняет FPS между отзывчивым и простаивающим режимом", D3D_CONFIG, 0, 1),
-                sw("VulkanUseSeparateSubmitThread", "Отдельный поток отправки (Vulkan)", "Разгружает главный поток", D3D_CONFIG, 0, 1),
-                sw("VulkanEnableSubmitBatching", "Пакетная отправка (Vulkan)", "", D3D_CONFIG, 0, 1),
-                sw("AsyncCompute", "Асинхронные вычисления", "ОПАСНО: может подвесить игру на заставке. Лучше не включать", SETUP, 0, 0),
-                sw("ForceCrowdFrameSkip", "Пропуск кадров анимации зрителей", "Меньше нагрузка на CPU", SETUP, 0, 1),
-                sw("UseFeralTAA", "TAA от Feral", "Своё временное сглаживание вместо стандартного", SETUP, 0, 0),
-                sw("UseFeralUpscaler", "Апскейлер от Feral", "", SETUP, 0, 0),
+                sw("EnableFramerateManager", Fr.t("Менеджер частоты кадров"), Fr.t("Игра сама меняет FPS между отзывчивым и простаивающим режимом"), D3D_CONFIG, 0, 1),
+                sw("VulkanUseSeparateSubmitThread", Fr.t("Отдельный поток отправки (Vulkan)"), Fr.t("Разгружает главный поток"), D3D_CONFIG, 0, 1),
+                sw("VulkanEnableSubmitBatching", Fr.t("Пакетная отправка (Vulkan)"), "", D3D_CONFIG, 0, 1),
+                sw("AsyncCompute", Fr.t("Асинхронные вычисления"), Fr.t("ОПАСНО: может подвесить игру на заставке. Лучше не включать"), SETUP, 0, 0),
+                sw("ForceCrowdFrameSkip", Fr.t("Пропуск кадров анимации зрителей"), Fr.t("Меньше нагрузка на CPU"), SETUP, 0, 1),
+                sw("UseFeralTAA", Fr.t("TAA от Feral"), Fr.t("Своё временное сглаживание вместо стандартного"), SETUP, 0, 0),
+                sw("UseFeralUpscaler", Fr.t("Апскейлер от Feral"), "", SETUP, 0, 0),
             };
             oMisc = new Ex[] {
-                sw("AllowHD", "Разрешить HD-текстуры", "Нужен установленный пакет HD-текстур", join(SETUP, "TexturePacks"), 0, 1),
-                sw("UseHD", "Использовать HD-текстуры", "Больше видеопамяти", join(SETUP, "TexturePacks"), 0, 1),
-                ex("MaxParticleEmittersOverride", "Лимит источников частиц", "Меньше: больше FPS в толпе машин", SETUP, 0, "integer", 2, "1024|1024", "2048|2048", "4096|4096 (по умолч.)", "8192|8192"),
+                sw("AllowHD", Fr.t("Разрешить HD-текстуры"), Fr.t("Нужен установленный пакет HD-текстур"), join(SETUP, "TexturePacks"), 0, 1),
+                sw("UseHD", Fr.t("Использовать HD-текстуры"), Fr.t("Больше видеопамяти"), join(SETUP, "TexturePacks"), 0, 1),
+                ex("MaxParticleEmittersOverride", Fr.t("Лимит источников частиц"), Fr.t("Меньше: больше FPS в толпе машин"), SETUP, 0, "integer", 2, "1024|1024", "2048|2048", Fr.t("4096|4096 (по умолч.)"), "8192|8192"),
             };
             oCtl = new Ex[0];
             oSys = new Ex[] {
-                sw("RenderUnderNotch", "Рисовать под вырезом экрана", "", SETUP, 0, 1),
-                sw("AllowAutorotate", "Автоповорот", "", SETUP, 0, 1),
-                sw("AllowPausing", "Пауза по кнопке", "", SETUP, 0, 1),
-                sw("PauseOnSuspend", "Пауза при сворачивании", "", SETUP, 0, 1),
-                sw("AllowSendCrashReports", "Отправлять отчёты о сбоях", "", SETUP, 0, 0),
-                sw("AllowSendUsageData", "Отправлять данные об использовании", "", SETUP, 0, 0),
+                sw("RenderUnderNotch", Fr.t("Рисовать под вырезом экрана"), "", SETUP, 0, 1),
+                sw("AllowAutorotate", Fr.t("Автоповорот"), "", SETUP, 0, 1),
+                sw("AllowPausing", Fr.t("Пауза по кнопке"), "", SETUP, 0, 1),
+                sw("PauseOnSuspend", Fr.t("Пауза при сворачивании"), "", SETUP, 0, 1),
+                sw("AllowSendCrashReports", Fr.t("Отправлять отчёты о сбоях"), "", SETUP, 0, 0),
+                sw("AllowSendUsageData", Fr.t("Отправлять данные об использовании"), "", SETUP, 0, 0),
             };
             exAll = new Ex[][] {oGfx, oDrs, oEngine, oMisc, oSys};
             oPresets = new String[][] {
@@ -1955,7 +1955,7 @@ public class LauncherActivity extends Activity {
             applyOtherKv(e.substring(0, k), e.substring(k + 1));
         }
         int fpsNow = fpsValues[Math.max(0, fpsSpinner.getSelectedItemPosition())];
-        say("Подобрано для " + (fps60 ? "60 FPS (упор на плавность)" : "30 FPS (упор на качество)") + " (класс: " + hw.tierName + ", цель " + fpsNow + " FPS). Нажмите «Сохранить» или «Играть».");
+        say(Fr.t("Подобрано для ") + (fps60 ? Fr.t("60 FPS (упор на плавность)") : Fr.t("30 FPS (упор на качество)")) + Fr.t(" (класс: ") + hw.tierName + Fr.t(", цель ") + fpsNow + Fr.t(" FPS). Нажмите «Сохранить» или «Играть»."));
     }
 
     private void applyOtherKv(String key, String val) {
@@ -1975,12 +1975,12 @@ public class LauncherActivity extends Activity {
     private void buildOtherBody(LinearLayout left, LinearLayout right) {
         hw = Hw.detect(this);
         initAuto();
-        LinearLayout cAuto = card(left, "Подбор под ваше железо");
+        LinearLayout cAuto = card(left, Fr.t("Подбор под ваше железо"));
         cAuto.addView(text(hw.describe(), 12, MUTED, false));
         LinearLayout autoRow = new LinearLayout(this);
         autoRow.setOrientation(LinearLayout.HORIZONTAL);
-        Button a60 = button("Авто · 60 FPS", false);
-        Button a30 = button("Авто · 30 FPS", false);
+        Button a60 = button(Fr.t("Авто · 60 FPS"), false);
+        Button a30 = button(Fr.t("Авто · 30 FPS"), false);
         LinearLayout.LayoutParams ap = new LinearLayout.LayoutParams(0, -2, 1f);
         ap.topMargin = dp(8);
         ap.rightMargin = dp(6);
@@ -1993,8 +1993,8 @@ public class LauncherActivity extends Activity {
         a60.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View v) { applyOtherAuto(true); } });
         a30.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View v) { applyOtherAuto(false); } });
 
-        LinearLayout cP = card(left, "Пресеты графики");
-        cP.addView(text("Выставляют разрешение и параметры графики. Лимит FPS не меняют.", 11, MUTED, false));
+        LinearLayout cP = card(left, Fr.t("Пресеты графики"));
+        cP.addView(text(Fr.t("Выставляют разрешение и параметры графики. Лимит FPS не меняют."), 11, MUTED, false));
         LinearLayout presetRow = new LinearLayout(this);
         presetRow.setOrientation(LinearLayout.HORIZONTAL);
         for (int i = 0; i < PRESET_NAMES.length; i++) {
@@ -2012,13 +2012,13 @@ public class LauncherActivity extends Activity {
         addResolutionCard(left);
         addFpsCard(left);
         if (TR) addUpscalerCard(left);
-        addExCard(left, "Динамическое разрешение: тонко", oDrs);
-        if (oFrame.length > 0) addExCard(left, "Менеджер кадров", oFrame);
-        addExCard(right, "Графика", oGfx);
-        addExCard(right, TR ? "Отладочные флаги" : "Мир и ролики", oMisc);
-        addExCard(right, "Движок и потоки (риск сбоев)", oEngine);
-        addExCard(right, "Управление", oCtl);
-        addExCard(right, "Система", oSys);
+        addExCard(left, Fr.t("Динамическое разрешение: тонко"), oDrs);
+        if (oFrame.length > 0) addExCard(left, Fr.t("Менеджер кадров"), oFrame);
+        addExCard(right, Fr.t("Графика"), oGfx);
+        addExCard(right, TR ? Fr.t("Отладочные флаги") : Fr.t("Мир и ролики"), oMisc);
+        addExCard(right, Fr.t("Движок и потоки (риск сбоев)"), oEngine);
+        addExCard(right, Fr.t("Управление"), oCtl);
+        addExCard(right, Fr.t("Система"), oSys);
     }
 
     private void setExValue(String key, String value) {
@@ -2035,7 +2035,7 @@ public class LauncherActivity extends Activity {
             int k = kv.indexOf('=');
             applyOtherKv(kv.substring(0, k), kv.substring(k + 1));
         }
-        say("Пресет «" + PRESET_NAMES[n] + "» выбран. Нажмите «Сохранить» или «Играть». Проверьте FPS по счётчику в игре.");
+        say(Fr.t("Пресет «") + PRESET_NAMES[n] + Fr.t("» выбран. Нажмите «Сохранить» или «Играть». Проверьте FPS по счётчику в игре."));
     }
 
     private void loadOther() {
@@ -2048,7 +2048,7 @@ public class LauncherActivity extends Activity {
         }
         String xml = readXml();
         if (xml == null) {
-            say(Fs.ready() ? "Файл настроек ещё не создан. Запустите игру один раз, затем откройте лаунчер снова." : "Нет доступа к файлам игры (нужен root или Shizuku). Пройдите шаги в карточке «Первичная настройка».");
+            say(Fs.ready() ? Fr.t("Файл настроек ещё не создан. Запустите игру один раз, затем откройте лаунчер снова.") : Fr.t("Нет доступа к файлам игры (нужен root или Shizuku). Пройдите шаги в карточке «Первичная настройка»."));
             resGroup.check(100);
             hudGroup.check(200);
             loadExtras(null);
@@ -2062,7 +2062,7 @@ public class LauncherActivity extends Activity {
         if (choice >= 0 && choice < resHeights.length && resHeights[choice] == h) sel = choice;
         if (sel < 0) for (int i = 0; i < resHeights.length; i++) if (resHeights[i] == h) { sel = i; break; }
         if (sel < 0) {
-            RadioButton r = radio(resGroup, "Текущее   " + widthFor(h) + "×" + h, 110);
+            RadioButton r = radio(resGroup, Fr.t("Текущее   ") + widthFor(h) + "×" + h, 110);
             int[] n = new int[resHeights.length + 1];
             System.arraycopy(resHeights, 0, n, 0, resHeights.length);
             n[resHeights.length] = h;
@@ -2101,13 +2101,13 @@ public class LauncherActivity extends Activity {
             swCasPs.setChecked("1".equals(PrefsEditor.getInKey(xml, "CASUsePixelShader", up)));
         }
         loadExtras(xml);
-        say(Fs.exists(bakPath) ? "Исходные настройки сохранены, их можно вернуть." : "Настройки загружены.");
+        say(Fs.exists(bakPath) ? Fr.t("Исходные настройки сохранены, их можно вернуть.") : Fr.t("Настройки загружены."));
     }
 
     private boolean applyOther() {
         String xml = readXml();
         if (xml == null) {
-            say("Файл настроек игры не найден. Запустите игру один раз.");
+            say(Fr.t("Файл настроек игры не найден. Запустите игру один раз."));
             return false;
         }
         if (!Fs.exists(bakPath)) {
@@ -2200,11 +2200,11 @@ public class LauncherActivity extends Activity {
 
         try {
             if (!writeBytes(prefPath, xml.getBytes("UTF-8"))) {
-                say("Не удалось записать файл настроек.");
+                say(Fr.t("Не удалось записать файл настроек."));
                 return false;
             }
         } catch (Exception e) {
-            say("Ошибка записи: " + e.getMessage());
+            say(Fr.t("Ошибка записи: ") + e.getMessage());
             return false;
         }
         return true;
@@ -2220,7 +2220,7 @@ public class LauncherActivity extends Activity {
         sharpSeek.setProgress(p[15]);
         upSharpSeek.setProgress(p[16]);
         swDynRes.setChecked(p[17] == 1);
-        say("Пресет «" + PRESET_NAMES[n] + "» выбран. Нажмите «Сохранить» или «Играть». Проверьте FPS по счётчику в игре.");
+        say(Fr.t("Пресет «") + PRESET_NAMES[n] + Fr.t("» выбран. Нажмите «Сохранить» или «Играть». Проверьте FPS по счётчику в игре."));
     }
 
     private void autoTune(int fps) {
@@ -2237,7 +2237,7 @@ public class LauncherActivity extends Activity {
         for (int i = 0; i < fpsValues.length; i++) {
             if (fpsValues[i] == fps) fpsSpinner.setSelection(i);
         }
-        say("Подобрано для " + fps + " FPS (класс: " + hw.tierName + "). Нажмите «Сохранить» или «Играть».");
+        say(Fr.t("Подобрано для ") + fps + Fr.t(" FPS (класс: ") + hw.tierName + Fr.t("). Нажмите «Сохранить» или «Играть»."));
     }
 
     // ---------------------------------------------------------------- launch
@@ -2246,7 +2246,7 @@ public class LauncherActivity extends Activity {
         if (Fs.exists(prefPath) && !applyToFile()) return;
         Fs.sh("am force-stop " + PKG);
         perfScheduleForLaunch();
-        say("Запуск игры…");
+        say(Fr.t("Запуск игры…"));
         handler.postDelayed(new Runnable() {
             @Override public void run() {
                 Intent i = new Intent(Intent.ACTION_MAIN);
@@ -2263,7 +2263,7 @@ public class LauncherActivity extends Activity {
                             handler.post(new Runnable() {
                                 @Override public void run() {
                                     if (rc == 0) finishAndRemoveTask();
-                                    else say("Не удалось запустить игру: " + (out == null ? "код " + rc : out.trim()));
+                                    else say(Fr.t("Не удалось запустить игру: ") + (out == null ? Fr.t("код ") + rc : out.trim()));
                                 }
                             });
                         }
@@ -2274,7 +2274,7 @@ public class LauncherActivity extends Activity {
                     startActivity(i);
                     finishAndRemoveTask();
                 } catch (Exception e) {
-                    say("Не удалось запустить игру: " + e.getMessage());
+                    say(Fr.t("Не удалось запустить игру: ") + e.getMessage());
                 }
             }
         }, 700);
