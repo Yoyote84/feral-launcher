@@ -25,7 +25,7 @@ final class Updater {
 
     /** Последний релиз репозитория, либо бросает исключение с понятным сообщением. */
     static Release latest(String repo) throws Exception {
-        HttpURLConnection c = open("https://api.github.com/repos/Tsifrokayf/" + repo + "/releases/latest");
+        HttpURLConnection c = open("https://api.github.com/repos/Yoyote84/" + repo + "/releases/latest");
         c.setRequestProperty("Accept", "application/vnd.github+json");
         int code = c.getResponseCode();
         if (code == 404) throw new Exception("релизов пока нет");
