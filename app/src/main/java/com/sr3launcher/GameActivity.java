@@ -29,7 +29,7 @@ import java.util.List;
 public class GameActivity extends Activity {
     private static final String SHIZUKU_PKG = "moe.shizuku.privileged.api";
     private static final int[] HEIGHTS = {540, 720, 900, 1080};
-    private static final String[] PRESET_NAMES = {"Минимум", "Низкие", "Средние", "Высокие", "Ультра"};
+    private static final String[] PRESET_NAMES = {Fr.t("Минимум"), Fr.t("Низкие"), Fr.t("Средние"), Fr.t("Высокие"), Fr.t("Ультра")};
 
     private Games.Spec S;
     private String prefPath, bakPath, gameActivity;
@@ -186,18 +186,18 @@ public class GameActivity extends Activity {
         LinearLayout titles = new LinearLayout(this);
         titles.setOrientation(LinearLayout.VERTICAL);
         titles.addView(text(S.title, 22, Color.WHITE, true));
-        titles.addView(text("Лаунчер: разрешение, графика и параметры игры", 13, S.muted, false));
+        titles.addView(text(Fr.t("Лаунчер: разрешение, графика и параметры игры"), 13, S.muted, false));
         head.addView(titles, new LinearLayout.LayoutParams(0, -2, 1f));
         LinearLayout credit = new LinearLayout(this);
         credit.setOrientation(LinearLayout.VERTICAL);
         credit.setGravity(Gravity.END);
-        credit.addView(text("Автор: Tsifrokayf", 13, S.text, false));
+        credit.addView(text(Fr.t("Автор: Tsifrokayf"), 13, S.text, false));
         TextView gh = text("github.com/Tsifrokayf", 13, S.accent, true);
         gh.setPaintFlags(gh.getPaintFlags() | android.graphics.Paint.UNDERLINE_TEXT_FLAG);
         gh.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 try { startActivity(new Intent(Intent.ACTION_VIEW, android.net.Uri.parse("https://github.com/Tsifrokayf"))); }
-                catch (Exception e) { say("Не удалось открыть ссылку"); }
+                catch (Exception e) { say(Fr.t("Не удалось открыть ссылку")); }
             }
         });
         credit.addView(gh);
@@ -225,17 +225,17 @@ public class GameActivity extends Activity {
         sv.addView(cols, new ViewGroup.LayoutParams(-1, -2));
         root.addView(sv, new LinearLayout.LayoutParams(-1, 0, 1f));
 
-        setupCard = card(left, "Первичная настройка");
+        setupCard = card(left, Fr.t("Первичная настройка"));
         setupBody = setupCard;
         setupCard.setVisibility(View.GONE);
 
         hw = Hw.detect(this);
-        LinearLayout ca = card(left, "Подбор под ваше железо");
+        LinearLayout ca = card(left, Fr.t("Подбор под ваше железо"));
         ca.addView(text(hw.describe(), 12, S.muted, false));
         LinearLayout autoRow = new LinearLayout(this);
         autoRow.setOrientation(LinearLayout.HORIZONTAL);
-        Button a60 = button("Авто · 60 FPS", false);
-        Button a30 = button("Авто · 30 FPS", false);
+        Button a60 = button(Fr.t("Авто · 60 FPS"), false);
+        Button a30 = button(Fr.t("Авто · 30 FPS"), false);
         LinearLayout.LayoutParams ap = new LinearLayout.LayoutParams(0, -2, 1f);
         ap.topMargin = dp(8);
         ap.rightMargin = dp(6);
@@ -244,12 +244,12 @@ public class GameActivity extends Activity {
         ap2.topMargin = dp(8);
         autoRow.addView(a30, ap2);
         ca.addView(autoRow);
-        ca.addView(text("Стартовые значения по классу GPU. Это не замер: проверьте в игре со счётчиком FPS и поправьте вручную.", 11, S.muted, false));
+        ca.addView(text(Fr.t("Стартовые значения по классу GPU. Это не замер: проверьте в игре со счётчиком FPS и поправьте вручную."), 11, S.muted, false));
         a60.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View v) { applyAuto(60); } });
         a30.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View v) { applyAuto(30); } });
 
-        LinearLayout pc = card(left, "Пресеты графики");
-        pc.addView(text("Выставляют разрешение и параметры графики. Лимит FPS не меняют.", 11, S.muted, false));
+        LinearLayout pc = card(left, Fr.t("Пресеты графики"));
+        pc.addView(text(Fr.t("Выставляют разрешение и параметры графики. Лимит FPS не меняют."), 11, S.muted, false));
         LinearLayout pr = new LinearLayout(this);
         pr.setOrientation(LinearLayout.HORIZONTAL);
         for (int i = 0; i < PRESET_NAMES.length; i++) {
@@ -266,16 +266,16 @@ public class GameActivity extends Activity {
         prp.topMargin = dp(8);
         pc.addView(pr, prp);
 
-        LinearLayout c = card(left, "Разрешение рендера");
-        resSpinner = row(c, "Высота рендера", "Меньше: больше FPS, но мягче картинка");
+        LinearLayout c = card(left, Fr.t("Разрешение рендера"));
+        resSpinner = row(c, Fr.t("Высота рендера"), Fr.t("Меньше: больше FPS, но мягче картинка"));
         resSpinner.getLayoutParams().width = dp(250);
         fill(resSpinner, resLabels(-1), 1);
-        c.addView(text("Чем ниже разрешение, тем выше FPS и холоднее телефон.", 11, S.muted, false));
+        c.addView(text(Fr.t("Чем ниже разрешение, тем выше FPS и холоднее телефон."), 11, S.muted, false));
 
-        LinearLayout ch = card(left, "Счётчик FPS в игре");
+        LinearLayout ch = card(left, Fr.t("Счётчик FPS в игре"));
         hudGroup = new android.widget.RadioGroup(this);
         hudGroup.setOrientation(android.widget.RadioGroup.HORIZONTAL);
-        String[] hl = {"Выключен", "Компактный", "Полный"};
+        String[] hl = {Fr.t("Выключен"), Fr.t("Компактный"), Fr.t("Полный")};
         for (int i = 0; i < hl.length; i++) {
             android.widget.RadioButton rb = new android.widget.RadioButton(this);
             rb.setText(hl[i]);
@@ -288,7 +288,7 @@ public class GameActivity extends Activity {
         }
         hudGroup.check(200);
         ch.addView(hudGroup);
-        ch.addView(text("Встроенная статистика движка: FPS, время кадра, нагрузка. Отдельного лимита это не меняет.", 11, S.muted, false));
+        ch.addView(text(Fr.t("Встроенная статистика движка: FPS, время кадра, нагрузка. Отдельного лимита это не меняет."), 11, S.muted, false));
 
         for (Games.Group g : S.groups) {
             LinearLayout gc = card(right, g.title);
@@ -316,9 +316,9 @@ public class GameActivity extends Activity {
         bar.setPadding(dp(24), dp(10), dp(24), dp(12));
         status = text("", 12, S.muted, false);
         bar.addView(status, new LinearLayout.LayoutParams(0, -2, 1f));
-        Button reset = button("Вернуть исходные", false);
-        Button save = button("Сохранить", false);
-        Button play = button("▶  ИГРАТЬ", true);
+        Button reset = button(Fr.t("Вернуть исходные"), false);
+        Button save = button(Fr.t("Сохранить"), false);
+        Button play = button(Fr.t("▶  ИГРАТЬ"), true);
         LinearLayout.LayoutParams bp = new LinearLayout.LayoutParams(-2, -2);
         bp.leftMargin = dp(10);
         bar.addView(reset, bp);
@@ -334,7 +334,7 @@ public class GameActivity extends Activity {
 
     private void say(String s) {
         status.setText(s);
-        status.setTextColor(s != null && s.startsWith("Нет доступа") ? 0xFFFF3B4E : S.muted);
+        status.setTextColor(s != null && s.startsWith(Fr.t("Нет доступа")) ? 0xFFFF3B4E : S.muted);
     }
 
     // ---------------------------------------------------------------- доступ к файлам
@@ -344,7 +344,7 @@ public class GameActivity extends Activity {
     }
 
     private void open(Intent i) {
-        try { startActivity(i); } catch (Exception e) { say("Не удалось открыть: " + e.getMessage()); }
+        try { startActivity(i); } catch (Exception e) { say(Fr.t("Не удалось открыть: ") + e.getMessage()); }
     }
 
     private interface Act { void go(); }
@@ -381,22 +381,22 @@ public class GameActivity extends Activity {
         if (!perm && !Fs.rootChecking()) showAccessBanner();
         final boolean shInst = pkgInstalled(SHIZUKU_PKG);
         if (Fs.rootOk()) {
-            step("Root-доступ получен", null, true, null, null);
+            step(Fr.t("Root-доступ получен"), null, true, null, null);
         } else {
-            step("Root", Fs.rootChecking() ? "Проверяю root…" : "Выдайте root лаунчеру в Magisk/KernelSU и нажмите «Проверить»",
-                false, "Проверить", new Act() { public void go() { Fs.retryRoot(); refreshSetup(); } });
-            step("Shizuku запущен", shInst ? "Запустите Shizuku и выдайте доступ лаунчеру" : "Установите Shizuku (Google Play или GitHub)",
-                Fs.running(), shInst ? "Открыть" : "Скачать", new Act() { public void go() {
+            step("Root", Fs.rootChecking() ? Fr.t("Проверяю root…") : Fr.t("Выдайте root лаунчеру в Magisk/KernelSU и нажмите «Проверить»"),
+                false, Fr.t("Проверить"), new Act() { public void go() { Fs.retryRoot(); refreshSetup(); } });
+            step(Fr.t("Shizuku запущен"), shInst ? Fr.t("Запустите Shizuku и выдайте доступ лаунчеру") : Fr.t("Установите Shizuku (Google Play или GitHub)"),
+                Fs.running(), shInst ? Fr.t("Открыть") : Fr.t("Скачать"), new Act() { public void go() {
                     Intent i = getPackageManager().getLaunchIntentForPackage(SHIZUKU_PKG);
                     if (i != null) open(i);
                     else open(new Intent(Intent.ACTION_VIEW, android.net.Uri.parse("https://github.com/RikkaApps/Shizuku/releases")));
                 } });
-            step("Доступ лаунчеру выдан", Fs.running() ? "Нажмите «Разрешить» в окне Shizuku" : "Сначала запустите Shizuku", perm,
-                Fs.running() ? "Запросить" : null, new Act() { public void go() { Fs.requestAccess(); refreshSetup(); } });
+            step(Fr.t("Доступ лаунчеру выдан"), Fs.running() ? Fr.t("Нажмите «Разрешить» в окне Shizuku") : Fr.t("Сначала запустите Shizuku"), perm,
+                Fs.running() ? Fr.t("Запросить") : null, new Act() { public void go() { Fs.requestAccess(); refreshSetup(); } });
         }
-        step("Игра установлена", "Установите " + S.name, inst, null, null);
-        step("Файл настроек игры создан", "Запустите игру один раз до главного меню и закройте её", prefs,
-            inst && perm ? "Запустить игру" : null, new Act() { public void go() {
+        step(Fr.t("Игра установлена"), Fr.t("Установите ") + S.name, inst, null, null);
+        step(Fr.t("Файл настроек игры создан"), Fr.t("Запустите игру один раз до главного меню и закройте её"), prefs,
+            inst && perm ? Fr.t("Запустить игру") : null, new Act() { public void go() {
                 Intent i = new Intent(Intent.ACTION_MAIN);
                 i.addCategory(Intent.CATEGORY_LAUNCHER);
                 i.setClassName(S.pkg, gameActivity);
@@ -409,10 +409,10 @@ public class GameActivity extends Activity {
         if (noAccessShown || isFinishing()) return;
         noAccessShown = true;
         new AlertDialog.Builder(this)
-            .setTitle("Нет доступа к файлам игры")
-            .setMessage("Лаунчер правит файл настроек игры, а Android не даёт обычным приложениям писать в папку другого приложения. Нужен root (Magisk/KernelSU/APatch) или Shizuku: запустите Shizuku через беспроводную отладку и нажмите «Разрешить» в его окне. Можно выдать доступ с компьютера: adb shell pm grant "
+            .setTitle(Fr.t("Нет доступа к файлам игры"))
+            .setMessage(Fr.t("Лаунчер правит файл настроек игры, а Android не даёт обычным приложениям писать в папку другого приложения. Нужен root (Magisk/KernelSU/APatch) или Shizuku: запустите Shizuku через беспроводную отладку и нажмите «Разрешить» в его окне. Можно выдать доступ с компьютера: adb shell pm grant ")
                 + getPackageName() + " moe.shizuku.manager.permission.API_V23")
-            .setPositiveButton("Понятно", null)
+            .setPositiveButton(Fr.t("Понятно"), null)
             .show();
     }
 
@@ -443,8 +443,8 @@ public class GameActivity extends Activity {
     private List<String> resLabels(int extra) {
         List<String> rl = new ArrayList<String>();
         for (int h : HEIGHTS) rl.add(h + "p   " + widthFor(h) + "×" + h);
-        rl.add("Нативное   " + nativeW + "×" + nativeH);
-        if (extra > 0) rl.add("Текущее   " + widthFor(extra) + "×" + extra);
+        rl.add(Fr.t("Нативное   ") + nativeW + "×" + nativeH);
+        if (extra > 0) rl.add(Fr.t("Текущее   ") + widthFor(extra) + "×" + extra);
         return rl;
     }
 
@@ -471,7 +471,7 @@ public class GameActivity extends Activity {
             if (cur != null) {
                 int idx = -1;
                 for (int k = 0; k < o.values.length; k++) if (o.values[k].equalsIgnoreCase(cur)) { idx = k; break; }
-                if (idx < 0) { labels.add(cur + " (из файла)"); loadedExtra.set(i, cur); idx = labels.size() - 1; }
+                if (idx < 0) { labels.add(cur + Fr.t(" (из файла)")); loadedExtra.set(i, cur); idx = labels.size() - 1; }
                 sel = idx;
             }
             fill(spinners.get(i), labels, sel);
@@ -510,7 +510,7 @@ public class GameActivity extends Activity {
         int ri = h == nativeH ? HEIGHTS.length : -1;
         for (int k = 0; k < HEIGHTS.length; k++) if (HEIGHTS[k] == h) ri = k;
         if (ri >= 0) resSpinner.setSelection(ri);
-        say("Пресет «" + PRESET_NAMES[lvl] + "» выбран. Нажмите «Сохранить» или «Играть».");
+        say(Fr.t("Пресет «") + PRESET_NAMES[lvl] + Fr.t("» выбран. Нажмите «Сохранить» или «Играть»."));
     }
 
     // по классу GPU (0 флагман … 3 слабый): уровень пресета и высота рендера
@@ -527,17 +527,17 @@ public class GameActivity extends Activity {
         for (int k = 0; k < HEIGHTS.length; k++) if (HEIGHTS[k] == h) resSpinner.setSelection(k);
         for (int i = 0; i < optList.size(); i++) {
             Games.Opt o = optList.get(i);
-            if (!"Лимит FPS".equals(o.title)) continue;
+            if (!Fr.t("Лимит FPS").equals(o.title)) continue;
             for (int k = 0; k < o.values.length; k++) if (o.values[k].equals(String.valueOf(fps))) spinners.get(i).setSelection(k);
         }
-        say("Подобрано для " + (fps == 60 ? "60 FPS (упор на плавность)" : "30 FPS (упор на качество)") + " (класс: " + hw.tierName
-            + "). Нажмите «Сохранить» или «Играть».");
+        say(Fr.t("Подобрано для ") + (fps == 60 ? Fr.t("60 FPS (упор на плавность)") : Fr.t("30 FPS (упор на качество)")) + Fr.t(" (класс: ") + hw.tierName
+            + Fr.t("). Нажмите «Сохранить» или «Играть»."));
     }
 
     private boolean write(boolean quiet) {
-        if (!Fs.ready()) { say("Нет доступа к файлам игры: выдайте root или Shizuku."); return false; }
+        if (!Fs.ready()) { say(Fr.t("Нет доступа к файлам игры: выдайте root или Shizuku.")); return false; }
         byte[] orig = Fs.read(prefPath);
-        if (orig == null) { say("Файл настроек не найден. Запустите игру один раз до главного меню."); return false; }
+        if (orig == null) { say(Fr.t("Файл настроек не найден. Запустите игру один раз до главного меню.")); return false; }
         try {
             if (!Fs.exists(bakPath)) Fs.write(bakPath, orig);
             String xml = new String(orig, "UTF-8");
@@ -568,11 +568,11 @@ public class GameActivity extends Activity {
             for (String[] f : S.force) {
                 if (PrefsEditor.getInKey(xml, f[0], S.setup) != null) xml = PrefsEditor.setInKey(xml, f[0], "string", f[1], S.setup);
             }
-            if (!Fs.write(prefPath, xml.getBytes("UTF-8"))) { say("Не удалось записать файл настроек."); return false; }
-            if (!quiet) say("Сохранено. Запустите игру: настройки применятся при старте.");
+            if (!Fs.write(prefPath, xml.getBytes("UTF-8"))) { say(Fr.t("Не удалось записать файл настроек.")); return false; }
+            if (!quiet) say(Fr.t("Сохранено. Запустите игру: настройки применятся при старте."));
             return true;
         } catch (Exception e) {
-            say("Ошибка: " + e.getMessage());
+            say(Fr.t("Ошибка: ") + e.getMessage());
             return false;
         }
     }
@@ -580,16 +580,16 @@ public class GameActivity extends Activity {
     private void save() { write(false); }
 
     private void restore() {
-        if (!Fs.exists(bakPath)) { say("Исходной копии пока нет: она создаётся при первом сохранении."); return; }
+        if (!Fs.exists(bakPath)) { say(Fr.t("Исходной копии пока нет: она создаётся при первом сохранении.")); return; }
         byte[] d = Fs.read(bakPath);
-        if (d != null && Fs.write(prefPath, d)) { load(); say("Исходные настройки возвращены."); }
-        else say("Не удалось вернуть исходные настройки.");
+        if (d != null && Fs.write(prefPath, d)) { load(); say(Fr.t("Исходные настройки возвращены.")); }
+        else say(Fr.t("Не удалось вернуть исходные настройки."));
     }
 
     private void play() {
         if (Fs.exists(prefPath) && !write(true)) return;
         Fs.sh("am force-stop " + S.pkg);
-        say("Запуск игры…");
+        say(Fr.t("Запуск игры…"));
         handler.postDelayed(new Runnable() {
             @Override public void run() {
                 if (Fs.ready()) {
@@ -600,7 +600,7 @@ public class GameActivity extends Activity {
                                 : Fs.sh("am start -n " + S.pkg + "/" + gameActivity);
                             handler.post(new Runnable() { @Override public void run() {
                                 if (rc == 0) finishAndRemoveTask();
-                                else say("Не удалось запустить игру: " + (out == null ? "код " + rc : out.trim()));
+                                else say(Fr.t("Не удалось запустить игру: ") + (out == null ? Fr.t("код ") + rc : out.trim()));
                             } });
                         }
                     }, "play").start();
@@ -613,7 +613,7 @@ public class GameActivity extends Activity {
                     i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(i);
                     finishAndRemoveTask();
-                } catch (Exception e) { say("Не удалось запустить игру: " + e.getMessage()); }
+                } catch (Exception e) { say(Fr.t("Не удалось запустить игру: ") + e.getMessage()); }
             }
         }, 700);
     }
