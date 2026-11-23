@@ -15,7 +15,7 @@
         <package android:name="moe.shizuku.privileged.api" />
     </queries>
     <application
-        android:label="Feral Лаунчер"
+        android:label="Feral Launcher FR"
         android:icon="@mipmap/ic_launcher"
         android:allowBackup="false"
         android:theme="@android:style/Theme.DeviceDefault.NoActionBar">
