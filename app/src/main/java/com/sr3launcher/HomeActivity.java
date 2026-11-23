@@ -64,7 +64,7 @@ public class HomeActivity extends Activity {
         root.setPadding(dp(24), dp(14), dp(24), dp(14));
 
         TextView title = new TextView(this);
-        title.setText("FERAL ЛАУНЧЕР");
+        title.setText("FERAL LAUNCHER FR");
         title.setTextColor(Color.WHITE);
         title.setTextSize(TypedValue.COMPLEX_UNIT_SP, 22);
         title.setTypeface(Typeface.DEFAULT_BOLD);
@@ -76,23 +76,23 @@ public class HomeActivity extends Activity {
         info.setOrientation(LinearLayout.VERTICAL);
         info.setGravity(Gravity.END);
         TextView auth = new TextView(this);
-        auth.setText("Автор: Tsifrokayf");
+        auth.setText("Traduction française communautaire");
         auth.setTextColor(0xFFC5CBD6);
         auth.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12);
         auth.setGravity(Gravity.END);
         info.addView(auth);
         TextView gh = new TextView(this);
-        gh.setText("github.com/Tsifrokayf/feral-launcher");
+        gh.setText("github.com/Yoyote84/feral-launcher");
         gh.setTextColor(0xFF6EA8FF);
         gh.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12);
         gh.setGravity(Gravity.END);
         gh.setPaintFlags(gh.getPaintFlags() | android.graphics.Paint.UNDERLINE_TEXT_FLAG);
         gh.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View v) {
-            startActivity(new Intent(Intent.ACTION_VIEW, android.net.Uri.parse("https://github.com/Tsifrokayf/feral-launcher")));
+            startActivity(new Intent(Intent.ACTION_VIEW, android.net.Uri.parse("https://github.com/Yoyote84/feral-launcher")));
         } });
         info.addView(gh);
         TextView ver = new TextView(this);
-        ver.setText("Версия " + BuildConfig.VERSION_NAME);
+        ver.setText("Version " + BuildConfig.VERSION_NAME);
         ver.setTextColor(0xFF8A93A3);
         ver.setTextSize(TypedValue.COMPLEX_UNIT_SP, 11);
         ver.setGravity(Gravity.END);
@@ -100,7 +100,7 @@ public class HomeActivity extends Activity {
         top.addView(info, new LinearLayout.LayoutParams(-2, -2));
         root.addView(top, new LinearLayout.LayoutParams(-1, -2));
         TextView sub = new TextView(this);
-        sub.setText("Выберите игру: откроются её настройки графики, FPS и запуск.");
+        sub.setText("Choisissez un jeu pour ouvrir ses réglages graphiques, FPS et options de lancement.");
         sub.setTextColor(0xFF8A93A3);
         sub.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12);
         LinearLayout.LayoutParams sp = new LinearLayout.LayoutParams(-1, -2);
@@ -120,7 +120,7 @@ public class HomeActivity extends Activity {
         updText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13);
         updBar.addView(updText, new LinearLayout.LayoutParams(0, -2, 1f));
         updBtn = new Button(this);
-        updBtn.setText("Обновить");
+        updBtn.setText("Mettre à jour");
         updBtn.setAllCaps(false);
         updBtn.setTextColor(Color.WHITE);
         GradientDrawable bb = new GradientDrawable();
@@ -129,7 +129,7 @@ public class HomeActivity extends Activity {
         updBtn.setBackground(bb);
         updBtn.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View v) { downloadUpdate(); } });
         laterBtn = new Button(this);
-        laterBtn.setText("Позже");
+        laterBtn.setText("Plus tard");
         laterBtn.setAllCaps(false);
         laterBtn.setTextColor(Color.WHITE);
         GradientDrawable lb = new GradientDrawable();
@@ -190,7 +190,7 @@ public class HomeActivity extends Activity {
                             android.content.SharedPreferences sp = getSharedPreferences("home", MODE_PRIVATE);
                             // «Позже» прячет баннер этой версии на сутки; более новая версия покажется сразу
                             if (rel.tag.equals(sp.getString("later_tag", "")) && System.currentTimeMillis() - sp.getLong("later_at", 0) < 24L * 3600 * 1000) return;
-                            updText.setText("Доступна новая версия " + rel.tag + " (у вас " + BuildConfig.VERSION_NAME + ")");
+                            updText.setText("Une nouvelle version est disponible : " + rel.tag + " (у вас " + BuildConfig.VERSION_NAME + ")");
                             updBar.setVisibility(View.VISIBLE);
                         }
                     }
@@ -204,7 +204,7 @@ public class HomeActivity extends Activity {
         updBusy = true;
         updBtn.setEnabled(false);
         laterBtn.setEnabled(false);
-        updText.setText("Скачиваю " + updRel.tag + "…");
+        updText.setText("Téléchargement de " + updRel.tag + "…");
         updProg.setProgress(0);
         updProg.setVisibility(View.VISIBLE);
         final String url = updRel.apkUrl;
@@ -225,7 +225,7 @@ public class HomeActivity extends Activity {
                         updBtn.setEnabled(true);
                         laterBtn.setEnabled(true);
                         updProg.setVisibility(View.GONE);
-                        if (error != null) { updText.setText("Не удалось скачать: " + error); return; }
+                        if (error != null) { updText.setText("Échec du téléchargement : " + error); return; }
                         installUpdate();
                     }
                 });
@@ -235,7 +235,7 @@ public class HomeActivity extends Activity {
 
     private void installUpdate() {
         if (!getPackageManager().canRequestPackageInstalls()) {
-            updText.setText("Разрешите установку обновлений в открывшемся окне и снова нажмите «Обновить».");
+            updText.setText("Autorisez l’installation des mises à jour dans la fenêtre Android, puis réessayez.");
             try {
                 startActivity(new Intent(android.provider.Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES, android.net.Uri.parse("package:" + getPackageName())));
             } catch (Exception ignored) { }
@@ -246,9 +246,9 @@ public class HomeActivity extends Activity {
             i.setDataAndType(ApkProvider.uri(this), "application/vnd.android.package-archive");
             i.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(i);
-            updText.setText("Файл скачан, подтвердите установку в окне системы.");
+            updText.setText("Fichier téléchargé. Confirmez l’installation dans la fenêtre Android.");
         } catch (Exception e) {
-            updText.setText("Не удалось открыть установщик: " + e.getMessage());
+            updText.setText("Impossible d’ouvrir l’installateur : " + e.getMessage());
         }
     }
 
@@ -314,7 +314,7 @@ public class HomeActivity extends Activity {
             c.addView(t, tp);
 
             TextView st = new TextView(this);
-            st.setText(ok ? "Открыть настройки" : "Игра не установлена");
+            st.setText(ok ? "Ouvrir les réglages" : "Jeu non installé");
             st.setTextColor(ok ? g.accent : 0xFF8A93A3);
             st.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12);
             LinearLayout.LayoutParams stp = new LinearLayout.LayoutParams(-2, -2);
@@ -323,7 +323,7 @@ public class HomeActivity extends Activity {
 
             c.setOnClickListener(new View.OnClickListener() {
                 @Override public void onClick(View v) {
-                    if (!ok) { Toast.makeText(HomeActivity.this, "Установите игру, потом откроются настройки", Toast.LENGTH_SHORT).show(); return; }
+                    if (!ok) { Toast.makeText(HomeActivity.this, "Installez le jeu pour accéder à ses réglages.", Toast.LENGTH_SHORT).show(); return; }
                     boolean generic = Games.byId(g.id) != null;
                     startActivity(new Intent(HomeActivity.this, generic ? GameActivity.class : LauncherActivity.class).putExtra("game", g.id));
                 }
