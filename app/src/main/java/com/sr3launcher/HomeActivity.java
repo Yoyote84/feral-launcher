@@ -190,7 +190,7 @@ public class HomeActivity extends Activity {
                             android.content.SharedPreferences sp = getSharedPreferences("home", MODE_PRIVATE);
                             // «Позже» прячет баннер этой версии на сутки; более новая версия покажется сразу
                             if (rel.tag.equals(sp.getString("later_tag", "")) && System.currentTimeMillis() - sp.getLong("later_at", 0) < 24L * 3600 * 1000) return;
-                            updText.setText("Une nouvelle version est disponible : " + rel.tag + " (у вас " + BuildConfig.VERSION_NAME + ")");
+                            updText.setText("Une nouvelle version est disponible : " + rel.tag + Fr.t(" (у вас ") + BuildConfig.VERSION_NAME + ")");
                             updBar.setVisibility(View.VISIBLE);
                         }
                     }
@@ -214,7 +214,7 @@ public class HomeActivity extends Activity {
                 try {
                     Updater.download(url, ApkProvider.apk(HomeActivity.this).getParentFile(), new Updater.Progress() {
                         @Override public void onProgress(final int pct) {
-                            handler.post(new Runnable() { @Override public void run() { updText.setText("Скачиваю " + updRel.tag + "… " + pct + "%"); updProg.setProgress(pct); } });
+                            handler.post(new Runnable() { @Override public void run() { updText.setText(Fr.t("Скачиваю ") + updRel.tag + "… " + pct + "%"); updProg.setProgress(pct); } });
                         }
                     });
                 } catch (Exception e) { err = e.getMessage() == null ? e.toString() : e.getMessage(); }
