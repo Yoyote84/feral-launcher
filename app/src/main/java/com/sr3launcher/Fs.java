@@ -13,7 +13,7 @@ import rikka.shizuku.Shizuku;
 final class Fs {
     private static final int REQ = 4711;
     private static Runnable onReady;
-    private static String problem = "Запускаю доступ к файлам игры…";
+    private static String problem = Fr.t("Запускаю доступ к файлам игры…");
     private static boolean listening;
     /** 0 - ещё не проверяли, 1 - root выдан, -1 - root недоступен или отклонён. */
     private static volatile int root = 0;
@@ -41,7 +41,7 @@ final class Fs {
             }
             check();
         } catch (Throwable t) {
-            problem = "Shizuku недоступен: " + t.getMessage();
+            problem = Fr.t("Shizuku недоступен: ") + t.getMessage();
         }
         if (!shizukuReady() && root == 0) tryRoot();
     }
@@ -87,17 +87,17 @@ final class Fs {
     /** Проверяет Shizuku и при необходимости запрашивает доступ. */
     private static void check() {
         if (!Shizuku.pingBinder()) {
-            problem = "Shizuku не запущен. Откройте Shizuku, запустите его и вернитесь в лаунчер.";
+            problem = Fr.t("Shizuku не запущен. Откройте Shizuku, запустите его и вернитесь в лаунчер.");
             return;
         }
         if (Shizuku.isPreV11()) {
-            problem = "Версия Shizuku слишком старая.";
+            problem = Fr.t("Версия Shizuku слишком старая.");
             return;
         }
         if (Shizuku.checkSelfPermission() != PackageManager.PERMISSION_GRANTED) {
-            problem = "Разрешите лаунчеру доступ в окне Shizuku (оно появилось сейчас).";
+            problem = Fr.t("Разрешите лаунчеру доступ в окне Shizuku (оно появилось сейчас).");
             if (!Shizuku.shouldShowRequestPermissionRationale()) Shizuku.requestPermission(REQ);
-            else problem = "Доступ отклонён. Включите его для лаунчера в приложении Shizuku.";
+            else problem = Fr.t("Доступ отклонён. Включите его для лаунчера в приложении Shizuku.");
             return;
         }
         problem = "";
@@ -130,7 +130,7 @@ final class Fs {
     static String problem() {
         try { if (!ready()) check(); } catch (Throwable ignored) { }
         if (root == 1) return "";
-        return problem.length() == 0 ? "Нет доступа к файлам игры." : problem;
+        return problem.length() == 0 ? Fr.t("Нет доступа к файлам игры.") : problem;
     }
 
     private static Process spawn(String[] cmd) throws Exception {
