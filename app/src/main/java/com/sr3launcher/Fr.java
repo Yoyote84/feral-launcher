@@ -569,6 +569,8 @@ final class Fr {
         put(m, " ГБ, занято ", " Go, utilisé ");
         put(m, " ГБ)", " Go)");
         put(m, "echo \\\"потоков: $n; ядра (потоков): $L приоритет: $(ps -o NI -p $pid|tail -n1|tr -d ' ')\\\";", "echo \\\"threads : $n ; cœurs (threads) : $L priorité : $(ps -o NI -p $pid|tail -n1|tr -d ' ')\\\";");
+        put(m, " FPS (класс: ", " FPS (catégorie : ");
+        put(m, "echo \\\"потоков: $n; ядра (потоков): $L приоритет: $(ps -o NI -p $pid|tail -n1|tr -d ' ')\\\";", "echo \\\"threads : $n ; cœurs (threads) : $L priorité : $(ps -o NI -p $pid|tail -n1|tr -d ' ')\\\";");
     }
     private Fr() { }
     private static void put(Map<String, String> m, String source, String translated) { m.put(source, translated); }
