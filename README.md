@@ -1,175 +1,55 @@
-<h1 align="center">Feral Лаунчер</h1>
+# Feral Launcher FR
 
-<p align="center">
-  Один лаунчер настроек для Android-портов Feral Interactive:<br>
-  <b>Saints Row: The Third</b>, <b>Tomb Raider</b>, <b>Hitman: Absolution</b>, <b>GRID Legends</b>, <b>GRID Autosport</b>, <b>Hitman: Blood Money</b>, <b>XCOM 2 Collection</b> и <b>Tropico</b>.
-</p>
+Version française communautaire de **Feral Launcher 2.1.2**.
 
-<p align="center">
-  <img src="docs/home.png" alt="Главный экран: выбор игры" width="860">
-</p>
+Cette application permet de modifier les préférences de plusieurs portages Android de Feral Interactive, sans modifier les APK des jeux.
 
-> **English:** Feral Launcher is a single Android app with a settings screen for each of eight Feral Interactive ports:
-> *Saints Row: The Third*, *Tomb Raider*, *Hitman: Absolution*, *GRID Legends*, *GRID Autosport*, *Hitman: Blood Money*, *XCOM 2 Collection* and *Tropico*. It edits each game's preferences file
-> through [Shizuku](https://shizuku.rikka.app/) or root: render resolution, per-option graphics quality, FPS limit,
-> hidden engine options and one-tap presets. It does not modify the game APKs.
+## Jeux pris en charge
 
-## Зачем это нужно
+- Saints Row: The Third
+- Tomb Raider
+- Hitman: Absolution
+- GRID Legends
+- GRID Autosport
+- Hitman: Blood Money
+- XCOM 2 Collection
+- Tropico
 
-В портах почти нет настроек: картинка получается мутной, а выбрать тени, отражения, сглаживание или лимит кадров нельзя.
-Все эти значения лежат в файле настроек игры. Лаунчер читает и аккуратно правит именно этот файл, а потом запускает игру.
+## Fonctions
 
-## Как устроен лаунчер
+- Réglage de la résolution de rendu et de la résolution dynamique.
+- Réglages graphiques détaillés selon le jeu : ombres, textures, reflets, anticrénelage, végétation et effets.
+- Limites de fréquence d’images et compteur FPS.
+- Préréglages et réglages automatiques selon le GPU.
+- Options avancées du moteur, notamment Vulkan et le gestionnaire de fréquence d’images.
+- Sauvegarde et restauration des préférences originales.
+- Accès aux fichiers du jeu via Shizuku ou root.
+- Réglages de performances système nécessitant root.
 
-На главном экране восемь карточек. Установленные игры подсвечены, неустановленные серые. Нажмите на игру: откроются её настройки в её цветах,
-кнопка «Назад» возвращает к выбору. Настройки и резервные копии у игр раздельные. В углу главного экрана автор, ссылка на репозиторий и версия.
+## Compatibilité
 
-<p align="center">
-  <img src="docs/grid-legends.png" width="48%" alt="GRID Legends: настройки">
-  <img src="docs/tomb-raider.png" width="48%" alt="Tomb Raider: настройки">
-</p>
+- Android 11 ou version ultérieure.
+- Jeu concerné installé et lancé au moins une fois.
+- Pour modifier Android/data : accès root (Magisk, KernelSU ou APatch) ou Shizuku démarré et autorisé.
 
-## Поддерживаемые игры
+## Compilation
 
-| Игра | Что настраивается |
-|---|---|
-| Saints Row: The Third | графика по отдельности, разрешение, динамическое разрешение, счётчик FPS, апскейлер, скрытые параметры, производительность (root) |
-| Tomb Raider | пресеты, разрешение и DRS, лимит FPS, TressFX, апскейлер и CAS, скрытые параметры |
-| Hitman: Absolution | пресеты, разрешение и DRS, лимит FPS, графика (боке, свечение, тени, зеркала, LOD), скрытые параметры |
-| GRID Legends | пресеты, разрешение и DRS, лимит FPS, графика, скрытые параметры |
-| GRID Autosport | тени, текстуры, вода, частицы, толпа, отражения, AO, фильтрация, масштаб рендера, FXAA, динамическое разрешение, лимит FPS |
-| Hitman: Blood Money | разрешение, разрешение теней и солнечных теней, апскейлер, FXAA |
-| XCOM 2 Collection | тени, текстуры, фильтрация, дальность прорисовки, эффекты, AO, Bloom, декали, глубина резкости, SSR, FXAA, масштаб разрешения, лимит FPS |
-| Tropico | тени, текстуры, дальность прорисовки, вода, ландшафт, трава, фильтрация |
+Le projet utilise Android Gradle Plugin 8.5.2 et Java 17.
 
-У всех игр есть выбор высоты рендера, пресеты, «Авто · 60 FPS» / «Авто · 30 FPS» и резервная копия исходных настроек.
-Список игр будет расширяться по запросу: см. раздел [«Добавить игру»](#добавить-игру).
+Commande de compilation : `gradle --no-daemon assembleDebug`.
 
-## Возможности
+APK de débogage : `app/build/outputs/apk/debug/app-debug.apk`.
 
-- **Подбор под ваше железо.** «Авто · 60 FPS» и «Авто · 30 FPS» определяют класс GPU (Adreno, Mali, Immortalis, Xclipse; запасной вариант по ОЗУ и числу ядер) и выставляют стартовый набор настроек.
-- **Пресеты графики:** «Минимум», «Низкие», «Средние», «Высокие», «Ультра». Лимит FPS пресеты не меняют.
-- **Графика по отдельности:** тени, освещение, затенение углов, отражения, сглаживание, детализация вдали, трава, частицы, качество текстур и другое. Набор свой у каждой игры.
-- **Разрешение и частота кадров:** высота рендера (выпадающий список, одинаковый во всех играх), динамическое разрешение, лимит 30 / 40 / 60 / 90 / 120 FPS (то, что поддерживает экран).
-- **Скрытые параметры движка,** которых нет в меню игры: многопоточный рендер и очередь кадров, параметры Vulkan, менеджер частоты кадров, тонкая настройка динамического разрешения, управление гироскопом и другое.
-- **Счётчик FPS в игре** (во всех играх): выключен, компактный или полный.
-- **Производительность (нужен root):** привязка потоков игры к ядрам, приоритет, размер подкачки zram и swappiness с откатом.
-- **Резервная копия.** При первом сохранении создаётся копия исходного файла настроек, кнопка «Вернуть исходные» её восстанавливает.
-- **Root или Shizuku.** Работает через root (Magisk, KernelSU, APatch) или Shizuku. Если Shizuku установлен, в карточке «Первичная настройка» есть кнопка «Открыть Shizuku», а если нет, то «Скачать Shizuku». Доступ можно выдать командой ADB, её можно скопировать одной кнопкой.
-- **Обновления.** При запуске лаунчер проверяет GitHub Releases. Если вышла новая версия, на главном экране появляется баннер с кнопками «Позже» и «Обновить»; при обновлении показывается полоса загрузки, потом открывается установщик Android.
+Un workflow GitHub Actions dans `.github/workflows/android.yml` compile automatiquement l’application et publie l’APK comme artefact.
 
-## Требования
+## Installation
 
-- Android 11 или новее.
-- Установленная игра: Saints Row: The Third (`com.feralinteractive.saintsrow3_android`), Tomb Raider (`com.feralinteractive.tombraider_android`),
-  Hitman: Absolution (`com.feralinteractive.hitmanabsolution_android`), GRID Legends (`com.feralinteractive.gridlegends_android`),
-  GRID Autosport (`com.feralinteractive.gridautosport_edition_android`), Hitman: Blood Money (`com.feralinteractive.hitmanbloodmoney_android`),
-  XCOM 2 Collection (`com.feralinteractive.xcom2_android`) или Tropico (`com.feralinteractive.tropico3`).
-- Доступ к папке игры: **root** или [Shizuku](https://shizuku.rikka.app/), запущенный и с выданным разрешением. Android 11+ не даёт обычным приложениям писать в `Android/data` другого приложения.
-- Игру нужно запустить хотя бы один раз до главного меню: при этом создаётся файл настроек.
+L’application française possède un identifiant Android distinct de l’édition originale : `fr.yoyote84.ferallauncher`. Elle peut donc être installée à côté de Feral Launcher original.
 
-## Первая настройка
+L’APK généré par GitHub Actions est signé avec la clé de débogage Android. Pour les mises à jour, conserve la même clé de signature que celle du premier APK français installé.
 
-### 1. Доступ к файлам игры
+## Crédits et licence
 
-**Есть root:** откройте любую игру в лаунчере и нажмите «Проверить» в карточке «Первичная настройка», разрешите root в Magisk/KernelSU/APatch. Shizuku не нужен.
+Feral Launcher original par **Tsifrokayf**. Cette adaptation française conserve la licence MIT du projet d’origine et ses attributions.
 
-**Root нет, нужен Shizuku:**
-
-1. Установите Shizuku (кнопка в лаунчере, Google Play или [страница релизов](https://github.com/RikkaApps/Shizuku/releases)).
-2. Включите режим разработчика: **Настройки → О телефоне → Номер сборки**, нажмите 7 раз.
-3. **Настройки → Для разработчиков → Беспроводная отладка**: включите (нужен Wi‑Fi).
-4. В Shizuku выберите «Запуск через беспроводную отладку» → «Сопряжение», введите код из настроек.
-5. Нажмите «Запустить». Вверху должно появиться «Shizuku работает».
-6. Откройте лаунчер и разрешите ему доступ к Shizuku. Если окно не появилось, выдайте доступ командой ADB, которую лаунчер показывает в карточке «Первичная настройка» (кнопка «Скопировать»).
-
-> Без root Shizuku нужно запускать заново после каждой перезагрузки телефона.
-> Если доступа нет, строка статуса внизу мигает красным, а при запуске показывается баннер с гайдом.
-
-### 2. Запустите игру один раз
-
-Дождитесь главного меню игры и закройте её. Так создаётся файл настроек, который правит лаунчер.
-
-### 3. Установите лаунчер и выберите настройки
-
-1. Скачайте `Feral_Launcher_*.apk` со страницы [Releases](../../releases) и установите.
-2. Выберите игру на главном экране. В строке состояния внизу должно быть «Настройки загружены».
-3. Нажмите «Авто · 60 FPS» / «Авто · 30 FPS» или выберите пресет.
-4. Нажмите «▶ ИГРАТЬ»: лаунчер сохранит настройки, перезапустит игру и откроет её. Кнопка «Сохранить» только записывает настройки.
-
-Меняйте по одному параметру и проверяйте результат в одной и той же сцене.
-
-| Что вы видите | Что менять |
-|---|---|
-| FPS ниже цели, упор в GPU | Снизить разрешение, затем тени, затенение углов, отражения |
-| FPS ниже цели, GPU не загружен | Упор в CPU: уменьшить сцену (персонажи, транспорт, зрители), оставить включённым многопоточный рендер |
-| Картинка мутная | Выше разрешение, качественнее сглаживание, текстуры |
-| Скачки разрешения | В тонкой настройке динамического разрешения увеличьте задержку повышения или поднимите минимальный масштаб |
-
-## Особенности игр
-
-- **Tomb Raider:** шкала «Качество текстур» перевёрнута: чем меньше число, тем чётче текстуры (0 самые чёткие, 3 самые мыльные). Лимит FPS меняется только если вы тронули его в лаунчере: настройка FPS в самой игре сохраняется.
-- **Hitman: Absolution:** игра сама сбрасывает значения вне своих пределов (SSAO не выше 2, разрешение текстур не выше 1, MSAA сбрасывается в 0), поэтому лаунчер предлагает только допустимые. Пропуск заставок при запуске не работает: ключ есть, но эта версия игры его не использует.
-- **GRID Legends:** значения настроек взяты из файла игры; пункт «Асинхронные вычисления» помечен как опасный: при включении игра может зависнуть на заставке.
-- **GRID Autosport:** параметры пишутся в профили «обычный» и «высокий» (`gfxconfig_*` и `gfxconfig_high_*`), профиль энергосбережения не трогается.
-- **XCOM 2 Collection:** параметры пишутся во все три профиля игры (обычный, батарея, графика). Масштаб разрешения умножается на выбранную высоту рендера.
-- **Hitman: Blood Money, Tropico:** лимита FPS в файле настроек нет, поэтому «Авто» подбирает только графику и разрешение. В Tropico установлена полная версия (`tropico3`), демо-версия (`tropico3demo`) не поддерживается.
-- **GRID Autosport, Hitman: Blood Money, XCOM 2, Tropico:** добавлены в 2.1.0 по файлам настроек с реального устройства. Часть значений (старшие уровни XCOM 2, «Среднее» в Tropico, FXAA в Blood Money) игра может не знать и тогда оставит ближайшее. У Blood Money графических параметров мало, главный рычаг там разрешение.
-- **Saints Row: The Third:** включённая «Файловая память игры» (`UseFileBackedMemory`) вызывала вылеты на некоторых планшетах.
-
-## Что нужно знать
-
-- После смены разрешения или графики игра заново прогревает шейдеры: в первые минуты возможны подлаги.
-- После принудительной остановки игра может показать окно про «аварийную остановку». Это не сбой: выберите «Не отправлять».
-- «Вернуть исходные» возвращает файл настроек, который был до первого сохранения из лаунчера.
-- Если игра обновится или настройки сбросятся, откройте лаунчер заново: он перечитывает файл при запуске.
-
-## Как это работает
-
-Игра читает настройки из `Android/data/<пакет игры>/files/feral_app_support/preferences` (XML в стиле реестра) при каждом запуске.
-Лаунчер читает этот файл через `Shizuku.newProcess` или `su -c`, меняет нужные значения точечными заменами (форматирование не трогается),
-записывает файл обратно и запускает игру. APK игры не изменяется.
-
-## Известные ограничения
-
-- Часть скрытых параметров основана на названиях ключей в файле и в движке: как именно каждый влияет на картинку и FPS, проверено не для всех.
-- Лаунчер меняет настройки игры, но не добавляет в неё сторонние апскейлеры или генерацию кадров (FSR, GSR, lsfg-vk и подобные).
-- Игра может молча заменить значение, которое счёл недопустимым, если оно выходит за её пределы.
-
-## Переход со старых лаунчеров
-
-Feral Лаунчер заменяет отдельные приложения
-[sr3-launcher](https://github.com/Tsifrokayf/sr3-launcher),
-[tomb-raider-launcher](https://github.com/Tsifrokayf/tomb-raider-launcher) и
-[hitman-launcher](https://github.com/Tsifrokayf/hitman-launcher).
-SR3 Лаунчер обновится на Feral Лаунчер поверх (тот же пакет и подпись). Лаунчеры Tomb Raider и Hitman имеют другие пакеты: установите Feral Лаунчер и удалите их вручную.
-
-## Сборка из исходников
-
-Нужны JDK 17, Android SDK (платформа 34) и Gradle 8.x.
-
-```bash
-echo "sdk.dir=/путь/к/Android/sdk" > local.properties
-gradle assembleRelease
-# APK: app/build/outputs/apk/release/app-release.apk
-```
-
-Для своей подписи положите `launcher.jks` рядом с папкой `app` и задайте переменную `KS_PASS`; иначе релиз подписывается отладочным ключом.
-
-## Отказ от ответственности
-
-Проект неофициальный и никак не связан с Feral Interactive и другими правообладателями. Названия и логотипы игр принадлежат их владельцам
-и используются только для обозначения игр, с которыми работает лаунчер. Лаунчер не содержит и не распространяет файлы игр: нужна собственная копия.
-Вы меняете настройки на свой риск; перед правкой лаунчер делает резервную копию файла настроек.
-
-## Автор
-
-**Tsifrokayf**, [github.com/Tsifrokayf](https://github.com/Tsifrokayf)
-
-## Лицензия
-
-Код распространяется по лицензии MIT, см. [LICENSE](LICENSE). Лицензия не распространяется на логотипы и товарные знаки.
-
-## Добавить игру
-
-Лаунчер описывает игры таблицей (`Games.java`). Чтобы добавить новую Feral-игру, пришлите имя пакета и файл `Android/data/<пакет>/files/feral_app_support/preferences`, снятый после первого запуска игры до главного меню (откройте Issue).
+Cette application est un projet communautaire non affilié à Feral Interactive. Les marques et noms des jeux restent la propriété de leurs détenteurs respectifs.
