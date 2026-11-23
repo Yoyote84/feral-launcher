@@ -140,7 +140,7 @@ final class Perf {
         if (report) {
             s.append("n=0;for t in /proc/$pid/task/*;do n=$((n+1));done;");
             s.append("L=$(for t in /proc/$pid/task/*;do grep Cpus_allowed_list $t/status 2>/dev/null|cut -f2;done|sort|uniq -c|tr -s ' '|tr '\\n' ';');");
-            s.append(Fr.t("echo \"потоков: $n; ядра (потоков): $L приоритет: $(ps -o NI -p $pid|tail -n1|tr -d ' ')\";"));
+            s.append(Fr.t("echo \"threads : $n; cœurs (threads) : $L priorité : $(ps -o NI -p $pid|tail -n1|tr -d ' ')\";"));
         }
         return s.toString();
     }
