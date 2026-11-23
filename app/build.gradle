@@ -6,9 +6,9 @@ android {
     defaultConfig {
         minSdk 30
         targetSdk 34
-        applicationId 'com.sr3.launcher'
-        versionCode 23
-        versionName '2.1.2'
+        applicationId 'fr.yoyote84.ferallauncher'
+        versionCode 24
+        versionName '2.1.2-fr1'
         buildConfigField 'String', 'REPO', '"feral-launcher"'
     }
     buildTypes { release { minifyEnabled false } }
