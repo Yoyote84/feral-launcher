@@ -26,20 +26,20 @@ final class Perf {
         String describe() {
             StringBuilder b = new StringBuilder();
             List<Integer> cl = clusters();
-            if (cl.isEmpty()) b.append("Ядер: ").append(cpus);
+            if (cl.isEmpty()) b.append(Fr.t("Ядер: ")).append(cpus);
             else {
-                b.append("Ядра: ");
+                b.append(Fr.t("Ядра: "));
                 for (int i = 0; i < cl.size(); i++) {
                     int n = 0;
                     for (int f : maxKhz) if (f == cl.get(i)) n++;
                     if (i > 0) b.append(", ");
-                    b.append(n).append(" × ").append(String.format(Locale.US, "%.2f", cl.get(i) / 1e6)).append(" ГГц");
+                    b.append(n).append(" × ").append(String.format(Locale.US, "%.2f", cl.get(i) / 1e6)).append(Fr.t(" ГГц"));
                 }
             }
-            b.append("\nОЗУ: ").append(gb(memTotalKb)).append(" ГБ, доступно ").append(gb(memAvailKb)).append(" ГБ");
-            if (swapTotalKb > 0) b.append("\nПодкачка: ").append(gb(swapTotalKb)).append(" ГБ, занято ").append(gb(swapTotalKb - swapFreeKb)).append(" ГБ");
-            else b.append("\nПодкачка: нет");
-            if (zramBytes > 0) b.append(" (zram ").append(String.format(Locale.US, "%.1f", zramBytes / 1073741824.0)).append(" ГБ)");
+            b.append(Fr.t("\nОЗУ: ")).append(gb(memTotalKb)).append(Fr.t(" ГБ, доступно ")).append(gb(memAvailKb)).append(Fr.t(" ГБ"));
+            if (swapTotalKb > 0) b.append(Fr.t("\nПодкачка: ")).append(gb(swapTotalKb)).append(Fr.t(" ГБ, занято ")).append(gb(swapTotalKb - swapFreeKb)).append(Fr.t(" ГБ"));
+            else b.append(Fr.t("\nПодкачка: нет"));
+            if (zramBytes > 0) b.append(" (zram ").append(String.format(Locale.US, "%.1f", zramBytes / 1073741824.0)).append(Fr.t(" ГБ)"));
             if (swappiness >= 0) b.append(", swappiness ").append(swappiness);
             return b.toString();
         }
@@ -89,13 +89,13 @@ final class Perf {
     /** Ключи и подписи вариантов; ключ "all" значит «не менять». */
     static List<String[]> coreOptions(Info in) {
         List<String[]> r = new ArrayList<String[]>();
-        r.add(new String[] {"all", "Все ядра (не менять)"});
+        r.add(new String[] {"all", Fr.t("Все ядра (не менять)")});
         List<Integer> cl = in.clusters();
         if (cl.size() >= 2) {
-            r.add(new String[] {"nolow", "Без самых слабых ядер"});
-            r.add(new String[] {"top", "Только самые быстрые ядра"});
+            r.add(new String[] {"nolow", Fr.t("Без самых слабых ядер")});
+            r.add(new String[] {"top", Fr.t("Только самые быстрые ядра")});
         }
-        if (cl.size() >= 3) r.add(new String[] {"notop", "Без самого быстрого ядра (меньше нагрев)"});
+        if (cl.size() >= 3) r.add(new String[] {"notop", Fr.t("Без самого быстрого ядра (меньше нагрев)")});
         return r;
     }
 
@@ -116,7 +116,7 @@ final class Perf {
 
     // ---- приоритет
 
-    static final String[] PRIO_LABELS = {"Обычный (не менять)", "Повышенный (−5)", "Высокий (−10)", "Низкий (+5)"};
+    static final String[] PRIO_LABELS = {Fr.t("Обычный (не менять)"), Fr.t("Повышенный (−5)"), Fr.t("Высокий (−10)"), Fr.t("Низкий (+5)")};
     static final int[] PRIO_NICE = {0, -5, -10, 5};
 
     /**
@@ -140,7 +140,7 @@ final class Perf {
         if (report) {
             s.append("n=0;for t in /proc/$pid/task/*;do n=$((n+1));done;");
             s.append("L=$(for t in /proc/$pid/task/*;do grep Cpus_allowed_list $t/status 2>/dev/null|cut -f2;done|sort|uniq -c|tr -s ' '|tr '\\n' ';');");
-            s.append("echo \"потоков: $n; ядра (потоков): $L приоритет: $(ps -o NI -p $pid|tail -n1|tr -d ' ')\";");
+            s.append(Fr.t("echo \"потоков: $n; ядра (потоков): $L приоритет: $(ps -o NI -p $pid|tail -n1|tr -d ' ')\";"));
         }
         return s.toString();
     }
