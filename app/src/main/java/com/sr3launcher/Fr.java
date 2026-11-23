@@ -571,6 +571,17 @@ final class Fr {
         put(m, "echo \\\"потоков: $n; ядра (потоков): $L приоритет: $(ps -o NI -p $pid|tail -n1|tr -d ' ')\\\";", "echo \\\"threads : $n ; cœurs (threads) : $L priorité : $(ps -o NI -p $pid|tail -n1|tr -d ' ')\\\";");
         put(m, " FPS (класс: ", " FPS (catégorie : ");
         put(m, "echo \\\"потоков: $n; ядра (потоков): $L приоритет: $(ps -o NI -p $pid|tail -n1|tr -d ' ')\\\";", "echo \\\"threads : $n ; cœurs (threads) : $L priorité : $(ps -o NI -p $pid|tail -n1|tr -d ' ')\\\";");
+        put(m, "\nКласс: ", "\nCatégorie : ");
+        put(m, "\nВ релизе нет APK, откройте страницу релизов.", "\nAucun APK dans cette publication. Ouvrez la page des versions.");
+        put(m, "Лаунчер правит файл настроек игры, а Android не даёт обычным приложениям писать в папку другого приложения. Нужен один из двух способов:\n\n", "Le lanceur modifie le fichier de configuration du jeu. Android empêche les applications ordinaires d’écrire dans le dossier d’une autre application. Deux méthodes sont possibles :\n\n");
+        put(m, "ВАРИАНТ A: root\nЕсли у вас Magisk, KernelSU или APatch, выдайте root-доступ приложению «SR3 Лаунчер» и нажмите «Проверить root».\n\n", "OPTION A : root\nSi vous utilisez Magisk, KernelSU ou APatch, accordez l’accès root à « Feral Launcher FR », puis appuyez sur « Vérifier le root ».\n\n");
+        put(m, "ВАРИАНТ B: Shizuku (без root)\n", "OPTION B : Shizuku (sans root)\n");
+        put(m, "1. Установите Shizuku (кнопка «Скачать Shizuku»).\n", "1. Installez Shizuku (bouton « Télécharger Shizuku »).\n");
+        put(m, "2. Настройки → О телефоне → «Номер сборки», нажмите 7 раз (режим разработчика).\n", "2. Paramètres → À propos du téléphone → « Numéro de version », appuyez 7 fois (mode développeur).\n");
+        put(m, "3. Для разработчиков → включите «Беспроводная отладка» (нужен Wi‑Fi).\n", "3. Options pour les développeurs → activez « Débogage sans fil » (Wi-Fi requis).\n");
+        put(m, "4. В Shizuku: «Запуск через беспроводную отладку» → «Сопряжение», введите код из настроек, затем «Запустить».\n", "4. Dans Shizuku : « Démarrer via le débogage sans fil » → « Associer », saisissez le code affiché dans les paramètres, puis « Démarrer ».\n");
+        put(m, "5. Вернитесь в лаунчер и нажмите «Разрешить» в окне Shizuku.\n", "5. Revenez au lanceur et appuyez sur « Autoriser » dans la fenêtre Shizuku.\n");
+        put(m, " FPS (класс: ", " FPS (catégorie : ");
     }
     private Fr() { }
     private static void put(Map<String, String> m, String source, String translated) { m.put(source, translated); }
